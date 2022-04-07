@@ -7,30 +7,29 @@ class LoginPage extends Page {
     /**
      * define selectors using getter methods
      */
-    public get inputUsername () {
-        return $('input[name="username"]');
+    public get inputEmail () {
+        return $('#auth-form > input:nth-child(1)');
     }
 
     public get inputPassword () {
-        return $('input[name="password"]');
+        return $('#auth-form > input:nth-child(2)');
     }
 
     public get btnSubmit () {
-        return $('[data-test-id="submit-button"]');
+        return $('#auth-form > div.auth-form__buttons > input');
     }
 
-    public get btnNext () {
-        return $('[data-test-id="next-button"]');
+    public get profileBtn () {
+        return $('#app > div.app__content > div.main-layout > div.topbar > span > div > a');
     }
 
-    public get userEmailHeader () {
-        return $('.ph-project__user-name');
+    public get userEmail () {
+        return $('#content > div > div.profile-page__content > form.profile-form > div:nth-child(2) > input');
     }
 
-    public async fillLogin (username: string) {
-        await this.inputUsername.waitForDisplayed();
-        await this.inputUsername.setValue(username);
-        await this.btnNext.click();
+    public async fillLogin (email: string) {
+        await this.inputEmail.waitForDisplayed();
+        await this.inputEmail.setValue(email);
     }
 
     public async fillPassword (password: string) {
@@ -39,19 +38,24 @@ class LoginPage extends Page {
         await this.btnSubmit.click();
     }
 
-    public async login (username: string, password: string) {
-        await this.fillLogin(username);
+    public async openProfileAfterLogin () {
+        await this.profileBtn.waitForDisplayed();
+        await this.profileBtn.click();
+    }
+
+    public async getEmailAfterLogin () {
+        await this.userEmail.waitForDisplayed();
+        return this.userEmail.getValue();
+    }
+
+    public async login (email: string, password: string) {
+        await this.fillLogin(email);
         await this.fillPassword(password);
     }
 
-    public async getEmail () {
-        await this.userEmailHeader.waitForDisplayed();
-        return this.userEmailHeader.getText();
-    }
-
     public open () {
-        return super.open('login');
+        return super.open('signin');
     }
 }
 
-export default new LoginPage('https://account.mail.ru');
+export default new LoginPage('https://lostpointer.site');
