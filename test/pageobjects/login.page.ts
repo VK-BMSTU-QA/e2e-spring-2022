@@ -19,10 +19,6 @@ class LoginPage extends Page {
         return $('button[class="btn btn_primary btn_rounded"]');
     }
 
-    public get btnNext () {
-        return $('[data-test-id="next-button"]');
-    }
-
     public get userEmailHeader () {
         return $('.profile-card__username');
     }
@@ -31,6 +27,17 @@ class LoginPage extends Page {
         return $('.error');
     }
 
+    public get btnOpenNavBar () {
+        return $('.navbar__profile-name');
+    }
+
+    public get btnNavBarLogout () {
+        return $('.navbar__popup > a[router-go="/logout"]');
+    }
+    public get pageName () {
+        return $('.auth-block > h1[key="null"]');
+    }
+    
     public async fillLogin (username: string) {
         await this.inputUsername.waitForDisplayed();
         await this.inputUsername.setValue(username);
@@ -46,10 +53,19 @@ class LoginPage extends Page {
         await this.fillLogin(username);
         await this.fillPassword(password);
     }
+    public async logout () {
+        await this.btnOpenNavBar.click();
+        await this.btnNavBarLogout.click();
+        await browser.debug()
+    }
 
     public async getEmail () {
         await this.userEmailHeader.waitForDisplayed();
         return this.userEmailHeader.getText();
+    }
+    public async getPageName () {
+        await this.pageName.waitForDisplayed();
+        return this.pageName.getText();
     }
 
     public async getError () {
