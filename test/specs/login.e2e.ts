@@ -1,7 +1,7 @@
-import LoginPage from  '../pageobjects/login.page';
+import LoginPage from '../pageobjects/login.page';
 import * as assert from 'assert';
 
-describe('Login with correct username and password', () => {
+describe('Авторизация с корректным логином и паролем', () => {
     beforeEach(() => {
         LoginPage.setWindowSize(1400, 1200);
     });
@@ -10,12 +10,12 @@ describe('Login with correct username and password', () => {
         await LoginPage.open();
 
         await LoginPage.login(process.env.LOGIN, process.env.PASSWORD);
-        const headerEmail = await LoginPage.getEmail();
+        const username = await LoginPage.getUserName();
 
         assert.strictEqual(
-          headerEmail,
-          process.env.LOGIN,
-          `Email авторизованного юзера ${headerEmail} не соответствует ожидаемому ${process.env.LOGIN}`,
+            username,
+            process.env.LOGIN,
+            `Email авторизованного юзера ${username} не соответствует ожидаемому ${process.env.LOGIN}`,
         );
     });
 });

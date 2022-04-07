@@ -20,6 +20,6 @@
     },
     "scripts": {
         "wdio": "wdio run test/wdio.conf.ts",
-        "report": "allure generate allure-results && allure open"
+        "report": "allure generate allure-results --clean && allure open"
     }
 }
