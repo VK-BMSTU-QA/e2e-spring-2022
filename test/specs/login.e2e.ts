@@ -3,15 +3,15 @@ import * as assert from 'assert';
 import {authData} from '../utils/constants';
 
 describe('Авторизация с корректным логином и паролем', () => {
-    beforeEach(() => {
+    before(() => {
         LoginPage.setWindowSize(1400, 1200);
     });
 
-    it('should login with valid credentials', async () => {
+    it('Проверка авторизации с корректными данными', async () => {
         await LoginPage.open();
         await LoginPage.login(authData.login, authData.password);
-        const username = await LoginPage.getUserName();
 
+        const username = await LoginPage.getUserName();
         assert.strictEqual(
             username,
             authData.login,

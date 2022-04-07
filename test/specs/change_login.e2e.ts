@@ -4,15 +4,15 @@ import {authData, testChangeLogin} from '../utils/constants';
 import LoginPage from '../pageobjects/login.page';
 
 describe('Смена логина с корректным паролем', () => {
-    before(() => {
+    before(async () => {
         ProfilePage.setWindowSize(1400, 1200);
-    });
-
-    it('Логин в навбаре и инпуте должен совпадать,' +
-        ' и быть такимже как логин введенный при авторизации', async () => {
         await LoginPage.open();
         await LoginPage.login(authData.login, authData.password);
         await LoginPage.waitForRedirect();
+    });
+
+    it('Логин в навбаре и инпуте должен совпадать,' +
+        ' и быть такими же как логин введенный при авторизации', async () => {
         await ProfilePage.open();
 
         const usernameNavBar = await ProfilePage.getUserNameNavbar();
@@ -31,15 +31,11 @@ describe('Смена логина с корректным паролем', () =>
     });
 
     it('После корректной смены login\'a, логин изменяется в навбаре и инпуте', async () => {
-        await LoginPage.open();
-        await LoginPage.login(authData.login, authData.password);
-        await LoginPage.waitForRedirect();
-
         await ProfilePage.open();
         await ProfilePage.changeLogin(testChangeLogin.new_login, authData.password);
         await ProfilePage.refresh();
+
         const usernameNavBar = await ProfilePage.getUserNameNavbar();
-        console.log(usernameNavBar);
         assert.strictEqual(
             usernameNavBar,
             testChangeLogin.new_login,
@@ -47,7 +43,6 @@ describe('Смена логина с корректным паролем', () =>
         );
 
         const userNameInput = await ProfilePage.getUserNameInput();
-        console.log(userNameInput);
         assert.strictEqual(
             userNameInput,
             testChangeLogin.new_login,
@@ -56,6 +51,7 @@ describe('Смена логина с корректным паролем', () =>
     });
 
     after(async () => {
+        /* Возвращаем старый логин */
         await ProfilePage.changeLogin(authData.login, authData.password);
     });
 });

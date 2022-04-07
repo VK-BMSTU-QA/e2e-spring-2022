@@ -1,3 +1,5 @@
+import * as path from 'path';
+
 export const urls = {
     base: 'https://brrrello.ru',
     login: 'login',
@@ -11,4 +13,13 @@ export const authData = {
 
 export const testChangeLogin = {
     new_login: process.env.NEWLOGIN,
+};
+
+export const testAvatarChange = {
+    image: path.join('images', '2hoursLater.png'),
+};
+
+export const testChangeEmail = {
+    email_ok: 'mail1234@abc.ru',
+    email_error: 'mail1234abcru',
 };

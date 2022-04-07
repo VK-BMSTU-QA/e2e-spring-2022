@@ -35,6 +35,31 @@ class ProfilePage extends Page {
         return $('#navbarUserNameId');
     }
 
+    public get inputAvatar() {
+        return $('#avatarId');
+    }
+
+    public get btnAvatar() {
+        return $('.button.profile-box__button');
+    }
+
+    public async uploadAvatar(path: string) {
+        const file = await browser.uploadFile(path);
+        await this.btnAvatar.waitForDisplayed();
+        await browser.execute(() => {
+            document.getElementById('avatarId').style.display = 'block';
+        });
+        await this.inputAvatar.setValue(file);
+    }
+
+    public async isAvatarErrorExisting() {
+        return $('#avatar-validation-box').isExisting();
+    }
+
+    public async isInputErrorExisting() {
+        return $('.error.error_margin').isExisting();
+    }
+
     public async getUserNameNavbar() {
         await this.navbarUserName.waitForDisplayed();
         return this.navbarUserName.getText();
@@ -43,6 +68,18 @@ class ProfilePage extends Page {
     public async getUserNameInput() {
         await this.inputLogin.waitForDisplayed();
         return this.inputLogin.getAttribute('value');
+    }
+
+    public async getEmail() {
+        await this.inputEmail.waitForDisplayed();
+        return this.inputEmail.getAttribute('value');
+    }
+
+    public async changeEmail(email: string, password: string) {
+        await this.inputEmail.waitForDisplayed();
+        await this.inputEmail.setValue(email);
+        await this.setOldPassword(password);
+        await this.pressEnter();
     }
 
     public async setLogin(login: string) {
