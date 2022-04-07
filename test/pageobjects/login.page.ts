@@ -1,36 +1,30 @@
 import Page from './page';
 
-/**
- * sub page containing specific selectors and methods for a specific page
- */
 class LoginPage extends Page {
-    /**
-     * define selectors using getter methods
-     */
-    public get inputUsername () {
-        return $('input[name="username"]');
+
+    public get inputEmail () {
+        return $('input[name="email"]');
     }
 
     public get inputPassword () {
-        return $('input[name="password"]');
+        return $('#passwordInput');
     }
 
     public get btnSubmit () {
-        return $('[data-test-id="submit-button"]');
+        return $('input[type="submit"]');
     }
 
-    public get btnNext () {
-        return $('[data-test-id="next-button"]');
+    public get headerAvatar() {
+        return $('#header-avatar')
     }
 
     public get userEmailHeader () {
-        return $('.ph-project__user-name');
+        return $('.user-popup-userblock-email');
     }
 
     public async fillLogin (username: string) {
-        await this.inputUsername.waitForDisplayed();
-        await this.inputUsername.setValue(username);
-        await this.btnNext.click();
+        await this.inputEmail.waitForDisplayed();
+        await this.inputEmail.setValue(username);
     }
 
     public async fillPassword (password: string) {
@@ -45,13 +39,18 @@ class LoginPage extends Page {
     }
 
     public async getEmail () {
+        await this.headerAvatar.click();
         await this.userEmailHeader.waitForDisplayed();
-        return this.userEmailHeader.getText();
+        return await this.userEmailHeader.getText();
     }
 
-    public open () {
-        return super.open('login');
+    public openMain() {
+        return super.open('')
+    }
+
+    public async open () {
+        return super.open('login')
     }
 }
 
-export default new LoginPage('https://account.mail.ru');
+export default new LoginPage('https://bmstusa.ru');
