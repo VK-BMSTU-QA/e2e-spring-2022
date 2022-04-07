@@ -8,29 +8,24 @@ class LoginPage extends Page {
      * define selectors using getter methods
      */
     public get inputUsername () {
-        return $('input[name="username"]');
+        return $('.user-box__login');
     }
 
     public get inputPassword () {
-        return $('input[name="password"]');
+        return $('.user-box__password');
     }
 
     public get btnSubmit () {
-        return $('[data-test-id="submit-button"]');
+        return $('.auth-btn');
     }
 
-    public get btnNext () {
-        return $('[data-test-id="next-button"]');
-    }
-
-    public get userEmailHeader () {
-        return $('.ph-project__user-name');
+    public get noUserError () {
+        return $('.auth-content-inner__error');
     }
 
     public async fillLogin (username: string) {
         await this.inputUsername.waitForDisplayed();
         await this.inputUsername.setValue(username);
-        await this.btnNext.click();
     }
 
     public async fillPassword (password: string) {
@@ -44,14 +39,14 @@ class LoginPage extends Page {
         await this.fillPassword(password);
     }
 
-    public async getEmail () {
-        await this.userEmailHeader.waitForDisplayed();
-        return this.userEmailHeader.getText();
+    public async waitForError() {
+        return this.noUserError.getText();
     }
 
+
     public open () {
-        return super.open('login');
+        return super.open('signin');
     }
 }
 
-export default new LoginPage('https://account.mail.ru');
+export default new LoginPage('http://goodvibesazot.tk');
