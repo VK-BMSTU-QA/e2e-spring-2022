@@ -1,4 +1,5 @@
 import Page from './page';
+import {URL} from '../../constants';
 
 class ProfilePage extends Page {
     public open() {
@@ -15,4 +16,4 @@ class ProfilePage extends Page {
     }
 }
 
-export default new ProfilePage('https://lostpointer.site');
+export default new ProfilePage(URL);
