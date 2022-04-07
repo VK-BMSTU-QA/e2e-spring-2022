@@ -6,7 +6,7 @@ describe('Redirect to signup', () => {
     const user = {
         name: 'Иван',
         surname: 'Иванов',
-        email: 'ivanivan@mail.ru',
+        email: `ivanivan${Math.random()*100}@mail.ru`,
         password: 'passswordpassword'
     };
 
