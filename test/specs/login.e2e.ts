@@ -10,14 +10,12 @@ describe('Login with correct username and password', () => {
         await LoginPage.open();
 
         await LoginPage.login(process.env.LOGIN, process.env.PASSWORD);
-        const headerEmail = await LoginPage.getEmail();
+        const headerLogin = await LoginPage.getLogin();
 
         assert.strictEqual(
-          headerEmail,
+          headerLogin,
           process.env.LOGIN,
-          `Email авторизованного юзера ${headerEmail} не соответствует ожидаемому ${process.env.LOGIN}`,
+          `Login авторизованного юзера ${headerLogin} не соответствует ожидаемому ${process.env.LOGIN}`,
         );
     });
 });
-
-
