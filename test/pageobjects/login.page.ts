@@ -7,51 +7,89 @@ class LoginPage extends Page {
     /**
      * define selectors using getter methods
      */
-    public get inputUsername () {
-        return $('input[name="username"]');
+    public get inputEmail () {
+        return $('input[name="email"]');
     }
 
     public get inputPassword () {
-        return $('input[name="password"]');
+        return $('input[type="password"]');
     }
 
     public get btnSubmit () {
-        return $('[data-test-id="submit-button"]');
+        return $('input[type="submit"]');
     }
 
-    public get btnNext () {
-        return $('[data-test-id="next-button"]');
+    public get headerAvatar () {
+        return $('#header-avatar');
     }
 
-    public get userEmailHeader () {
-        return $('.ph-project__user-name');
+    public get emailField () {
+        return $('.user-popup-userblock-email');
     }
 
-    public async fillLogin (username: string) {
-        await this.inputUsername.waitForDisplayed();
-        await this.inputUsername.setValue(username);
-        await this.btnNext.click();
+    public get passwordLengthError () {
+        return $('#passwordError');
+    }
+
+    public get signupButton () {
+        return $('[href="/signup"]');
+    }
+
+    public get formTitle () {
+        return $('.auth-title');
+    }
+
+    public async getFormTitleText () {
+        await this.formTitle.waitForDisplayed();
+        return this.formTitle.getText();
+    }
+
+    public async fillLogin (email: string) {
+        await this.inputEmail.waitForDisplayed();
+        await this.inputEmail.setValue(email);
     }
 
     public async fillPassword (password: string) {
         await this.inputPassword.waitForDisplayed();
         await this.inputPassword.setValue(password);
+        await this.btnSubmit.waitForClickable();
         await this.btnSubmit.click();
     }
 
-    public async login (username: string, password: string) {
-        await this.fillLogin(username);
+    public async redirectToSignUp () {
+        await this.signupButton.waitForDisplayed();
+        await this.signupButton.click();
+    }
+
+    public async login (email: string, password: string) {
+        await this.fillLogin(email);
         await this.fillPassword(password);
     }
 
-    public async getEmail () {
-        await this.userEmailHeader.waitForDisplayed();
-        return this.userEmailHeader.getText();
+    public async loginWithShortPassword (email: string) {
+        await this.fillLogin(email);
+        await this.fillPassword('123');
     }
 
-    public open () {
+    public async getPasswordError () {
+        await this.passwordLengthError.waitForDisplayed();
+        return this.passwordLengthError.getText();
+    }
+
+    public async getUserEmail () {
+        await this.headerAvatar.waitForClickable();
+        await this.headerAvatar.click();
+        await this.emailField.waitForExist();
+        return this.emailField.getText();
+    }
+
+    public openMain () {
+        return super.open('');
+    }
+
+    public openLogin () {
         return super.open('login');
     }
 }
 
-export default new LoginPage('https://account.mail.ru');
+export default new LoginPage('https://bmstusa.ru');
