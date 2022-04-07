@@ -1,5 +1,6 @@
 import LoginPage from '../pageobjects/login.page';
 import * as assert from 'assert';
+import {authData} from '../utils/constants';
 
 describe('Авторизация с корректным логином и паролем', () => {
     beforeEach(() => {
@@ -8,13 +9,12 @@ describe('Авторизация с корректным логином и па�
 
     it('should login with valid credentials', async () => {
         await LoginPage.open();
-
-        await LoginPage.login(process.env.LOGIN, process.env.PASSWORD);
+        await LoginPage.login(authData.login, authData.password);
         const username = await LoginPage.getUserName();
 
         assert.strictEqual(
             username,
-            process.env.LOGIN,
+            authData.login,
             `Email авторизованного юзера ${username} не соответствует ожидаемому ${process.env.LOGIN}`,
         );
     });
