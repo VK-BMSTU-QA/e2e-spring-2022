@@ -8,15 +8,15 @@ class LoginPage extends Page {
      * define selectors using getter methods
      */
     public get inputUsername () {
-        return $('input[name="username"]');
+        return $('input[type="email"]');
     }
 
     public get inputPassword () {
-        return $('input[name="password"]');
+        return $('input[type="password"]');
     }
 
     public get btnSubmit () {
-        return $('[data-test-id="submit-button"]');
+        return $('button[class="btn btn_primary btn_rounded"]');
     }
 
     public get btnNext () {
@@ -24,13 +24,13 @@ class LoginPage extends Page {
     }
 
     public get userEmailHeader () {
-        return $('.ph-project__user-name');
+        return $('.profile-card__username');
     }
 
     public async fillLogin (username: string) {
         await this.inputUsername.waitForDisplayed();
         await this.inputUsername.setValue(username);
-        await this.btnNext.click();
+        // await this.btnNext.click();
     }
 
     public async fillPassword (password: string) {
@@ -50,8 +50,8 @@ class LoginPage extends Page {
     }
 
     public open () {
-        return super.open('login');
+        return super.open('signin');
     }
 }
 
-export default new LoginPage('https://account.mail.ru');
+export default new LoginPage('https://pyaterochka-team.site');
