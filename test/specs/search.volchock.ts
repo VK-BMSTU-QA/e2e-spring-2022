@@ -1,7 +1,7 @@
 import MainPage from '../pageobjects/main.page';
 import * as assert from 'assert';
 
-describe('Login with correct username and password', () => {
+describe('Поиск объявления по тексту', () => {
     beforeEach(() => {
         MainPage.setWindowSize(1400, 1200);
     });
