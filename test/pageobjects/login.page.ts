@@ -27,10 +27,13 @@ class LoginPage extends Page {
         return $('.profile-card__username');
     }
 
+    public get invalidLoginOrPassword () {
+        return $('.error');
+    }
+
     public async fillLogin (username: string) {
         await this.inputUsername.waitForDisplayed();
         await this.inputUsername.setValue(username);
-        // await this.btnNext.click();
     }
 
     public async fillPassword (password: string) {
@@ -47,6 +50,11 @@ class LoginPage extends Page {
     public async getEmail () {
         await this.userEmailHeader.waitForDisplayed();
         return this.userEmailHeader.getText();
+    }
+
+    public async getError () {
+        await this.invalidLoginOrPassword.waitForDisplayed();
+        return this.invalidLoginOrPassword.getText();
     }
 
     public open () {

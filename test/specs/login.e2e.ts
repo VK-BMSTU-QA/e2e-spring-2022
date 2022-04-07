@@ -11,7 +11,6 @@ describe('Login with correct username and password', () => {
 
         await LoginPage.login(process.env.LOGIN, process.env.PASSWORD);
         const headerEmail = await LoginPage.getEmail();
-        console.log(headerEmail);
 
         assert.strictEqual(
           headerEmail,
