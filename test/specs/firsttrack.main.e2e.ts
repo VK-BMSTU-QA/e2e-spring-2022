@@ -1,5 +1,4 @@
-import LoginPage from  '../pageobjects/login.page';
-import ProfilePage from '../pageobjects/profile.page';
+import LoginPage from '../pageobjects/login.page';
 import * as assert from 'assert';
 import {screenHeight, screenWidth} from '../../constants';
 import MainPage from '../pageobjects/main.page';
@@ -10,7 +9,7 @@ describe('Play first track from "Suggested tracks" section', () => {
         MainPage.setWindowSize(screenWidth, screenHeight);
     });
 
-    it('Plays first track', async() => {
+    it('Plays first track', async () => {
         LoginPage.open();
 
         await LoginPage.login(process.env.LOGIN, process.env.PASSWORD);
@@ -25,7 +24,9 @@ describe('Play first track from "Suggested tracks" section', () => {
         const playerTitle = await MainPage.getPlayerTrackTitle();
         const playerArtist = await MainPage.getPlayerArtistName();
 
-        assert.strictEqual(trackTitle, playerTitle, `Воспроизводимый трек ${playerTitle} не соответствует первому треку ${trackTitle}`);
-        assert.strictEqual(artistName, playerArtist, `Исполнитель ${playerArtist} не соответствует исполнителю первого трека ${artistName}`);
+        assert.strictEqual(trackTitle, playerTitle,
+            `Воспроизводимый трек ${playerTitle} не соответствует первому треку ${trackTitle}`);
+        assert.strictEqual(artistName, playerArtist,
+            `Исполнитель ${playerArtist} не соответствует исполнителю первого трека ${artistName}`);
     });
 });

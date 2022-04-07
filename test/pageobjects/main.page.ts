@@ -2,8 +2,8 @@ import Page from './page';
 import {URL} from '../../constants';
 
 class MainPage extends Page {
-    public open() {
-        return super.open('');
+    public get firstAlbumPlayButton() {
+        return $('.top-album__play');
     }
 
     public get firstPlayButton() {
@@ -18,6 +18,37 @@ class MainPage extends Page {
         return $('.track__container__artist');
     }
 
+    public get player() {
+        return $('#player');
+    }
+
+    public get playerTrackTitle() {
+        return $('#track-name');
+    }
+
+    public get playerArtistName() {
+        return $('#artist-name');
+    }
+
+    public get firstAlbum() {
+        return $('.top-album');
+    }
+
+    public async playFirstAlbum() {
+        await this.firstAlbumPlayButton.waitForDisplayed();
+        await this.firstAlbumPlayButton.click();
+    }
+
+    public async openFirstAlbum() {
+        await this.firstAlbum.waitForDisplayed();
+        await this.firstAlbum.click();
+    }
+
+
+    public open() {
+        return super.open('');
+    }
+
     public async getFirstTrackArtist() {
         await this.firstTrackArtist.waitForDisplayed();
         return this.firstTrackArtist.getText();
@@ -28,21 +59,9 @@ class MainPage extends Page {
         return this.firstTrackTitle.getText();
     }
 
-    public get player() {
-        return $('#player');
-    }
-
-    public get playerTrackTitle() {
-        return $('#track-name');
-    }
-
     public async getPlayerTrackTitle() {
         await this.playerTrackTitle.waitForDisplayed();
         return this.playerTrackTitle.getText();
-    }
-
-    public get playerArtistName() {
-        return $('#artist-name');
     }
 
     public async getPlayerArtistName() {
