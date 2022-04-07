@@ -7,30 +7,29 @@ class LoginPage extends Page {
     /**
      * define selectors using getter methods
      */
-    public get inputUsername () {
-        return $('input[name="username"]');
+    public get inputLogin () {
+        return $('[id="login"]');
     }
 
     public get inputPassword () {
-        return $('input[name="password"]');
+        return $('[id="password"]');
     }
 
     public get btnSubmit () {
-        return $('[data-test-id="submit-button"]');
+        return $('[id="login-button"]');
     }
 
-    public get btnNext () {
-        return $('[data-test-id="next-button"]');
+    public get navbarUsername () {
+        return $('[id="navbarUserNameId"]');
     }
 
-    public get userEmailHeader () {
-        return $('.ph-project__user-name');
+    public get navbarLogout () {
+        return $('[id="logout"]');
     }
 
-    public async fillLogin (username: string) {
-        await this.inputUsername.waitForDisplayed();
-        await this.inputUsername.setValue(username);
-        await this.btnNext.click();
+    public async fillUsername (username: string) {
+        await this.inputLogin.waitForDisplayed();
+        await this.inputLogin.setValue(username);
     }
 
     public async fillPassword (password: string) {
@@ -40,13 +39,18 @@ class LoginPage extends Page {
     }
 
     public async login (username: string, password: string) {
-        await this.fillLogin(username);
+        await this.fillUsername(username);
         await this.fillPassword(password);
     }
 
     public async getEmail () {
-        await this.userEmailHeader.waitForDisplayed();
-        return this.userEmailHeader.getText();
+        await this.navbarUsername.waitForDisplayed();
+        return this.navbarUsername.getText();
+    }
+
+    public async auth () {
+        await this.open();
+        await this.login(process.env.LOGIN, process.env.PASSWORD);
     }
 
     public open () {
@@ -54,4 +58,4 @@ class LoginPage extends Page {
     }
 }
 
-export default new LoginPage('https://account.mail.ru');
+export default new LoginPage('https://brrrello.ru');

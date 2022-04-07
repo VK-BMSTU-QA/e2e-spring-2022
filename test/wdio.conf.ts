@@ -53,8 +53,15 @@ export const config: Options.Testrunner = {
         './test/specs/**/*.ts'
     ],
     suites: {
-        login: [
-            './test/specs/login.e2e.ts'
+        auth: [
+            './test/specs/login.e2e.ts',
+            './test/specs/logout.e2e.ts',
+        ],
+        board: [
+            './test/specs/board_modal_window_create_column.e2e.ts',
+            './test/specs/board_rename.e2e.ts',
+            './test/specs/board_tag_add.e2e.ts',
+            './test/specs/board_add_member.e2e.ts',
         ],
         otherFeature: [
             // ...
@@ -91,7 +98,7 @@ export const config: Options.Testrunner = {
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
-        maxInstances: 5,
+        maxInstances: 3,
         //
         browserName: 'chrome',
         acceptInsecureCerts: true
@@ -107,7 +114,7 @@ export const config: Options.Testrunner = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'info',
+    logLevel: 'error',
     //
     // Set specific log levels per logger
     // loggers:
@@ -147,7 +154,7 @@ export const config: Options.Testrunner = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver'],
+    services: ['chromedriver', 'intercept'],
     
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
