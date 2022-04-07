@@ -6,7 +6,7 @@ describe('Login with correct username and password', () => {
         MainPage.setWindowSize(1400, 1200);
     });
 
-    it('should search for text in search input after click on search btn', async () => {
+    it('поиск по тексту введеному в поисковый инпут', async () => {
         const expectedSearchText = 'тест';
         await MainPage.open();
         await MainPage.search(expectedSearchText);

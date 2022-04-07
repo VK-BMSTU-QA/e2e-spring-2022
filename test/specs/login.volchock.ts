@@ -1,12 +1,12 @@
 import MainPage from '../pageobjects/main.page';
 import * as assert from 'assert';
 
-describe('Login with correct username and password', () => {
+describe('авторизация с валидными данными', () => {
     beforeEach(() => {
         MainPage.setWindowSize(1400, 1200);
     });
 
-    it('should login with valid credentials', async () => {
+    it('должен авторизоваться с валидными данными', async () => {
         await MainPage.open();
         await MainPage.login(process.env.LOGIN, process.env.PASSWORD);
         const username = await MainPage.getUsername();

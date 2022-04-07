@@ -11,16 +11,17 @@ describe('Login with correct username and password', () => {
         await MainPage.getUsername();
     });
 
-    it('создание нового объявления с названием тест', async () => {
+    it('should search for text in search input after click on search btn', async () => {
         await NewAdvPage.open();
         const title = 'тест';
         await NewAdvPage.publishAdvert(title);
         await ProfilePage.open();
-        const newAdvertText = await ProfilePage.getNewAdvertText();
+        await ProfilePage.archiveFirstAdvert();
+        const archiveAdvertText = await ProfilePage.getFirstArchiveName();
         
         assert.strictEqual(
             title,
-            newAdvertText,
+            archiveAdvertText,
             `Создание нового объявления с названием ${title} и остальными дефолтными параметрами`,
         );
     });

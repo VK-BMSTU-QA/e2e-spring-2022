@@ -1,19 +1,19 @@
 import Page from './page';
 
 class NewAdvertPage extends Page {
-    public get titleInput() {
+    private get titleInput() {
         return $('.new-advert__name > .text-input__input');
     }
 
-    public get mapsBlock() {
+    private get mapsBlock() {
         return $('#YMapsID');
     }
 
-    public get mapClickablePart() {
+    private get mapClickablePart() {
         return this.mapsBlock.$('ymaps').$('ymaps').$('ymaps').$('ymaps');
     }
 
-    public get SubmitButton() {
+    private get SubmitButton() {
         return $('#newAdForm');
     }
 
