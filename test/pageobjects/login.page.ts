@@ -4,54 +4,38 @@ import Page from './page';
  * sub page containing specific selectors and methods for a specific page
  */
 class LoginPage extends Page {
-    /**
-     * define selectors using getter methods
-     */
     public get inputUsername () {
-        return $('input[name="username"]');
+        return $('#auth-form > input:nth-child(1)');
     }
 
     public get inputPassword () {
-        return $('input[name="password"]');
+        return $('#auth-form > input:nth-child(2)');
     }
 
     public get btnSubmit () {
-        return $('[data-test-id="submit-button"]');
-    }
-
-    public get btnNext () {
-        return $('[data-test-id="next-button"]');
-    }
-
-    public get userEmailHeader () {
-        return $('.ph-project__user-name');
+        return $('#auth-form > div.auth-form__buttons > input');
     }
 
     public async fillLogin (username: string) {
         await this.inputUsername.waitForDisplayed();
         await this.inputUsername.setValue(username);
-        await this.btnNext.click();
     }
 
     public async fillPassword (password: string) {
         await this.inputPassword.waitForDisplayed();
         await this.inputPassword.setValue(password);
-        await this.btnSubmit.click();
     }
 
     public async login (username: string, password: string) {
         await this.fillLogin(username);
         await this.fillPassword(password);
-    }
-
-    public async getEmail () {
-        await this.userEmailHeader.waitForDisplayed();
-        return this.userEmailHeader.getText();
+        await this.btnSubmit.click();
+        await $('.sidebar').waitForDisplayed();
     }
 
     public open () {
-        return super.open('login');
+        return super.open('signin');
     }
 }
 
-export default new LoginPage('https://account.mail.ru');
+export default new LoginPage('https://lostpointer.site');

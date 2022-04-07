@@ -1,4 +1,5 @@
 import LoginPage from  '../pageobjects/login.page';
+import ProfilePage from '../pageobjects/profile.page';
 import * as assert from 'assert';
 
 describe('Login with correct username and password', () => {
@@ -10,14 +11,19 @@ describe('Login with correct username and password', () => {
         await LoginPage.open();
 
         await LoginPage.login(process.env.LOGIN, process.env.PASSWORD);
-        const headerEmail = await LoginPage.getEmail();
+
+        await ProfilePage.open();
+
+        const email = await ProfilePage.getEmail();
 
         assert.strictEqual(
-          headerEmail,
+          email,
           process.env.LOGIN,
-          `Email авторизованного юзера ${headerEmail} не соответствует ожидаемому ${process.env.LOGIN}`,
+          `Email авторизованного юзера ${email} не соответствует ожидаемому ${process.env.LOGIN}`,
         );
     });
+
+
 });
 
 
