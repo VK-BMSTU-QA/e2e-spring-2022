@@ -107,6 +107,7 @@ class TeamsPage extends Page {
     }
 
     public async isTeamCreated () {
+        await this.teamsContainer.waitForEnabled();
         return this.btnEditTeam.isDisplayed();
     }
 
