@@ -7,14 +7,15 @@ describe('Login with correct username and password', () => {
     });
 
     it('should login with valid credentials', async () => {
+        const wantLogin = process.env.LOGIN.split("@")[0];
+       
         await LoginPage.open();
-
         await LoginPage.login(process.env.LOGIN, process.env.PASSWORD);
         const headerEmail = await LoginPage.getEmail();
 
         assert.strictEqual(
           headerEmail,
-          process.env.LOGIN.split("@")[0],
+          wantLogin,
           `Email авторизованного юзера ${headerEmail} не соответствует ожидаемому ${process.env.LOGIN}`,
         );
     });

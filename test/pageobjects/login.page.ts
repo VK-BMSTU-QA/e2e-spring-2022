@@ -7,34 +7,34 @@ class LoginPage extends Page {
     /**
      * define selectors using getter methods
      */
-    public get inputUsername () {
+    private get inputUsername () {
         return $('input[type="email"]');
     }
 
-    public get inputPassword () {
+    private get inputPassword () {
         return $('input[type="password"]');
     }
 
-    public get btnSubmit () {
+    private get btnSubmit () {
         return $('button[class="btn btn_primary btn_rounded"]');
     }
 
-    public get userEmailHeader () {
+    private get userEmailHeader () {
         return $('.profile-card__username');
     }
 
-    public get invalidLoginOrPassword () {
+    private get invalidLoginOrPassword () {
         return $('.error');
     }
 
-    public get btnOpenNavBar () {
+    private get btnOpenNavBar () {
         return $('.navbar__profile-name');
     }
 
-    public get btnNavBarLogout () {
+    private get btnNavBarLogout () {
         return $('.navbar__popup > a[router-go="/logout"]');
     }
-    public get pageName () {
+    private get pageName () {
         return $('.auth-block > h1[key="null"]');
     }
     
@@ -56,7 +56,6 @@ class LoginPage extends Page {
     public async logout () {
         await this.btnOpenNavBar.click();
         await this.btnNavBarLogout.click();
-        await browser.debug()
     }
 
     public async getEmail () {

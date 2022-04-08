@@ -7,15 +7,15 @@ class ProfilePage extends Page {
     /**
      * define selectors using getter methods
      */
-    public get btnSubmit () {
+    private get btnSubmit () {
         return $('button.btn.btn_primary');
     }
 
-    public get btnOpenNavBar () {
+    private get btnOpenNavBar () {
         return $('.navbar__profile-name');
     }
 
-    public get btnNavBarLogout () {
+    private get btnNavBarLogout () {
         return $('.navbar__popup > a[router-go="/logout"]');
     }
     public async logout () {
