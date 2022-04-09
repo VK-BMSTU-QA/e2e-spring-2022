@@ -1,4 +1,5 @@
 import Page from './page';
+import {URL} from '../../constants';
 
 /**
  * sub page containing specific selectors and methods for a specific page
@@ -19,4 +20,4 @@ class FavoritesPage extends Page {
     }
 }
 
-export default new FavoritesPage('https://lostpointer.site');
+export default new FavoritesPage(URL);

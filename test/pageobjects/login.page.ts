@@ -1,4 +1,5 @@
 import Page from './page';
+import {URL} from '../../constants';
 
 /**
  * sub page containing specific selectors and methods for a specific page
@@ -58,4 +59,4 @@ class LoginPage extends Page {
     }
 }
 
-export default new LoginPage('https://lostpointer.site');
+export default new LoginPage(URL);

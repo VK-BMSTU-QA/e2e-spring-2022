@@ -3,12 +3,13 @@ import * as assert from 'assert';
 import LoginPage from '../pageobjects/login.page';
 import AlbumPage from '../pageobjects/album.page';
 import FavoritesPage from '../pageobjects/favorites.page';
+import {screenHeight, screenWidth} from '../../constants';
 
 describe('Login with correct username and password', () => {
     beforeEach(async () => {
-        LoginPage.setWindowSize(1400, 1200);
-        AlbumPage.setWindowSize(1400, 1200);
-        FavoritesPage.setWindowSize(1400, 1200);
+        LoginPage.setWindowSize(screenWidth, screenHeight);
+        AlbumPage.setWindowSize(screenWidth, screenHeight);
+        FavoritesPage.setWindowSize(screenWidth, screenHeight);
     });
 
     it('should add favor track to favorites page', async () => {

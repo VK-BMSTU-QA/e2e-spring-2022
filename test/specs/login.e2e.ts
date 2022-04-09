@@ -1,9 +1,10 @@
 import LoginPage from  '../pageobjects/login.page';
 import * as assert from 'assert';
+import {screenHeight, screenWidth} from '../../constants';
 
 describe('Login with correct username and password', () => {
     beforeEach(() => {
-        LoginPage.setWindowSize(1400, 1200);
+        LoginPage.setWindowSize(screenWidth, screenHeight);
     });
 
     it('should login with valid credentials', async () => {

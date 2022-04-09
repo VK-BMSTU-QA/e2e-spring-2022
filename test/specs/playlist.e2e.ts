@@ -2,11 +2,12 @@
 import * as assert from 'assert';
 import PlaylistPage from '../pageobjects/playlist.page';
 import LoginPage from '../pageobjects/login.page';
+import {screenHeight, screenWidth} from '../../constants';
 
 describe('Login with correct username and password', () => {
     beforeEach(async () => {
-        LoginPage.setWindowSize(1400, 1200);
-        PlaylistPage.setWindowSize(1400, 1200);
+        LoginPage.setWindowSize(screenWidth, screenHeight);
+        PlaylistPage.setWindowSize(screenWidth, screenHeight);
     });
 
     it('should change playlist name with valid name', async () => {
