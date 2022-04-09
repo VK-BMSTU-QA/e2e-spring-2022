@@ -1,12 +1,12 @@
 import LoginPage from  '../pageobjects/login.page';
 import * as assert from 'assert';
 
-describe('Login with correct username and password', () => {
+describe('Вход с корректным email и паролем', () => {
     beforeEach(() => {
         LoginPage.setWindowSize(1400, 1200);
     });
 
-    it('should login with valid credentials', async () => {
+    it('вход с действительными учетными данными', async () => {
         await LoginPage.openMain();
         await LoginPage.openLogin();
 

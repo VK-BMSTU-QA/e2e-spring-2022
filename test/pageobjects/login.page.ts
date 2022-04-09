@@ -66,11 +66,6 @@ class LoginPage extends Page {
         await this.fillPassword(password);
     }
 
-    public async loginWithShortPassword (email: string) {
-        await this.fillLogin(email);
-        await this.fillPassword('123');
-    }
-
     public async getPasswordError () {
         await this.passwordLengthError.waitForDisplayed();
         return this.passwordLengthError.getText();

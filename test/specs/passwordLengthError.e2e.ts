@@ -1,15 +1,16 @@
 import LoginPage from  '../pageobjects/login.page';
 import * as assert from 'assert';
 
-describe('Password length error', () => {
+describe('Валидация длины пароля', () => {
     beforeEach(() => {
         LoginPage.setWindowSize(1400, 1200);
     });
 
-    it('empty password', async () => {
+    it('пароль короче 8 символов должен вызвать ошибку', async () => {
         await LoginPage.openLogin();
+        const shortPassword = '123';
 
-        await LoginPage.loginWithShortPassword(process.env.LOGIN);
+        await LoginPage.login(process.env.LOGIN, shortPassword);
         const resultError = await LoginPage.getPasswordError();
         const expectedError = 'Пароль не может быть короче 8 символов';
 

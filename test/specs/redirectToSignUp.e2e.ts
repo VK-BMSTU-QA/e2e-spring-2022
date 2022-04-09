@@ -2,7 +2,7 @@ import LoginPage from  '../pageobjects/login.page';
 import SignUpPage from  '../pageobjects/signup.page';
 import * as assert from 'assert';
 
-describe('Redirect to signup', () => {
+describe('Переход на страницу регистрации со страницы входа', () => {
     const user = {
         name: 'Иван',
         surname: 'Иванов',
@@ -14,7 +14,7 @@ describe('Redirect to signup', () => {
         LoginPage.setWindowSize(1400, 1200);
     });
 
-    it('click on "Регистрация" button', async () => {
+    it('нажатие на кнопку "Регистрация" и создание профиля', async () => {
         await LoginPage.openLogin();
 
         await LoginPage.redirectToSignUp();
