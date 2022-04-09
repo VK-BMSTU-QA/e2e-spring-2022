@@ -3,13 +3,13 @@ import * as assert from 'assert';
 import {screenHeight, screenWidth} from '../../constants';
 import ProfilePage from '../pageobjects/profile.page';
 
-describe('Login with correct username and password', () => {
+describe('Login functionality', () => {
     beforeEach(() => {
         LoginPage.setWindowSize(screenWidth, screenHeight);
         ProfilePage.setWindowSize(screenWidth, screenHeight);
     });
 
-    it('should login with valid credentials', async () => {
+    it('Should login with valid credentials', async () => {
         LoginPage.open();
         await LoginPage.login(process.env.LOGIN, process.env.PASSWORD);
 
@@ -19,7 +19,7 @@ describe('Login with correct username and password', () => {
         assert.strictEqual(
             email,
             process.env.LOGIN,
-            `Email авторизованного юзера ${email} не соответствует ожидаемому ${process.env.LOGIN}`,
+            `The email of the authorized user ${email} does not match what is expected ${process.env.LOGIN}`,
         );
     });
 });

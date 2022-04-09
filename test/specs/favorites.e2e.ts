@@ -5,14 +5,14 @@ import AlbumPage from '../pageobjects/album.page';
 import FavoritesPage from '../pageobjects/favorites.page';
 import {screenHeight, screenWidth} from '../../constants';
 
-describe('Login with correct username and password', () => {
+describe('Favorites functionality', () => {
     beforeEach(async () => {
         LoginPage.setWindowSize(screenWidth, screenHeight);
         AlbumPage.setWindowSize(screenWidth, screenHeight);
         FavoritesPage.setWindowSize(screenWidth, screenHeight);
     });
 
-    it('should add favor track to favorites page', async () => {
+    it('Should add favor track to favorites page', async () => {
         const trackId = 4271;
 
         LoginPage.open();
@@ -27,7 +27,7 @@ describe('Login with correct username and password', () => {
         assert.notEqual(
             track,
             null,
-            `Трек ${trackId} не добавился на страницу избранного`,
+            `Track ${trackId} not added to favorites page`,
         );
     });
 });

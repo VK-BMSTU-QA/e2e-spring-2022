@@ -4,13 +4,13 @@ import PlaylistPage from '../pageobjects/playlist.page';
 import LoginPage from '../pageobjects/login.page';
 import {screenHeight, screenWidth} from '../../constants';
 
-describe('Login with correct username and password', () => {
+describe('Playlist functionality', () => {
     beforeEach(async () => {
         LoginPage.setWindowSize(screenWidth, screenHeight);
         PlaylistPage.setWindowSize(screenWidth, screenHeight);
     });
 
-    it('should change playlist name with valid name', async () => {
+    it('Should change playlist name with valid name', async () => {
         const newName = 'TEStt playlist';
 
         LoginPage.open();
@@ -25,7 +25,7 @@ describe('Login with correct username and password', () => {
         assert.strictEqual(
             newName,
             name,
-            `Name обновленного плейлиста ${name} не соответствует ожидаемому ${newName}`,
+            `The name of playlist being updated ${name} does not match the expected ${newName}`,
         );
     });
 });
