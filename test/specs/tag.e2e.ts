@@ -12,8 +12,8 @@ describe('Set tags', () => {
         const tag = 'концерт'
         await MainPage.addTag(tag);
         const eventHref = await MainPage.getEventCardHref();
-
-        await EventPage.open(eventHref);
+        const eventId = eventHref.split('=').pop();
+        await EventPage.open(eventId);
 
         const resTag = await EventPage.getTag();
 
@@ -24,5 +24,3 @@ describe('Set tags', () => {
         );
     });
 });
-
-

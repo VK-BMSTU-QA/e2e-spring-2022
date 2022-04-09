@@ -17,21 +17,18 @@ describe('Add to favorites', () => {
         await MainPage.open();
 
         const eventHref = await MainPage.getEventCardHref();
+        const eventId = eventHref.split('=').pop();
 
-        await EventPage.open(eventHref);
+        await EventPage.open(eventId);
         await EventPage.addToFavourite();
         await MainPage.open();
 
-        /*
-        const favouriteEventHref = await MainPage.getFavouriteCardHref();
+        const favouriteEventId = await MainPage.getFavouriteEventId();
 
         assert.strictEqual(
-          eventHref,
-          favouriteEventHref,
-          `ID избранного мероприятия ${favouriteEventHref} не соответствует ожидаемому ${eventHref}`,
+          eventId,
+          favouriteEventId,
+          `ID избранного мероприятия ${eventId} не соответствует ожидаемому ${favouriteEventId}`,
         );
-        */
     });
 });
-
-

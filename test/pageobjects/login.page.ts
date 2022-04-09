@@ -7,29 +7,25 @@ class LoginPage extends Page {
     /**
      * define selectors using getter methods
      */
-    public get inputUsername () {
-        return $('input[name="email"]');
+    public get inputEmail () {
+        return $('#emailInput');
     }
 
     public get inputPassword () {
-        return $('input[id="passwordInput"]');
+        return $('#passwordInput');
     }
 
     public get btnSubmit () {
         return $('.button-blue');
     }
 
-    public async fillEmailAndPassword (username: string, password: string) {
-        await this.inputUsername.waitForDisplayed();
-        await this.inputUsername.setValue(username);
+    public async login (email: string, password: string) {
+        await this.inputEmail.waitForDisplayed();
+        await this.inputEmail.setValue(email);
         await this.inputPassword.waitForDisplayed();
         await this.inputPassword.setValue(password);
         await this.btnSubmit.click();
         await browser.pause(1000);
-    }
-
-    public async login (username: string, password: string) {
-        await this.fillEmailAndPassword(username, password)
     }
 
     public open () {

@@ -23,7 +23,6 @@ class EventPage extends Page {
     public async addToFavourite () {
         await this.addFavouriteButton.waitForClickable();
         await this.addFavouriteButton.click();
-        await this.removeFavouriteButton.waitForClickable();
     }
 
     public async getTag () {
@@ -31,8 +30,8 @@ class EventPage extends Page {
         return this.tag.getText();
     }
 
-    public open (href) {
-        return super.open(href);
+    public open (eventId : string) {
+        return super.open('events?id='+eventId);
     }
 }
 

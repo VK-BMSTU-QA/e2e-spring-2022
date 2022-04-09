@@ -42,24 +42,8 @@ class MainPage extends Page {
         return $('.event-board-event').$('.event-anchor').getAttribute('href')
     }
 
-    public async getFavouriteCardHref() {
-        var favourite = document.evaluate(
-            `/html/body/div[id="app"]/
-            div[id="mvc-content"]/
-            div[id="event-board-wrapper"]/
-            div[id="event-column-0"]/
-            div[class="event-board-event"]/
-            div[class="event-img-wrapper"]/
-            div[class="event-img-overlay"]/
-            div[data-status="on"]`,
-            document,
-            null,
-            XPathResult.FIRST_ORDERED_NODE_TYPE,
-            null,
-          ).singleNodeValue;
-          var parElement = favourite.parentElement
-          var ref = parElement.getElementsByTagName('a')[0]
-          return ref.getAttribute('href')
+    public async getFavouriteEventId() {
+        return $('.event-img-overlay__item_selected').getAttribute('data-fav')
     }
 
     public async getEmail () {
