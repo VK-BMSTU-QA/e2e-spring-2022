@@ -7,19 +7,19 @@ class LoginPage extends Page {
     /**
      * define selectors using getter methods
      */
-    public get inputUsername () {
+     private get inputUsername () {
         return $('.user-box__login');
     }
 
-    public get inputPassword () {
+    private get inputPassword () {
         return $('.user-box__password');
     }
 
-    public get btnSubmit () {
+    private get btnSubmit () {
         return $('.auth-btn');
     }
 
-    public get noUserError () {
+    private get noUserError () {
         return $('.auth-content-inner__error');
     }
 
@@ -39,10 +39,10 @@ class LoginPage extends Page {
         await this.fillPassword(password);
     }
 
-    public async waitForError() {
+    public async loginError() {
+        await this.noUserError.waitForDisplayed();
         return this.noUserError.getText();
     }
-
 
     public open () {
         return super.open('signin');

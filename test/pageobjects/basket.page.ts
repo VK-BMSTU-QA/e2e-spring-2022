@@ -8,7 +8,7 @@ class BasketPage extends Page {
      * define selectors using getter methods
      */
 
-    public get productInBasket () {
+    private get productInBasket () {
         return $('.table-product-879');
     }
 
@@ -16,8 +16,12 @@ class BasketPage extends Page {
         return super.open('cart');
     }
 
-    public async waitForProductInBasket() {
+    private async waitForProductInBasket() {
         return this.productInBasket.waitForDisplayed()
+    }
+
+    public async seeProductInBasket() {
+        await this.waitForProductInBasket()
     }
 }
 

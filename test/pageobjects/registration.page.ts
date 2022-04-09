@@ -7,27 +7,27 @@ class RegistrationPage extends Page {
     /**
      * define selectors using getter methods
      */
-    public get inputUsername () {
+    private get inputUsername () {
         return $('.user-box__login');
     }
 
-    public get inputEmail () {
+    private get inputEmail () {
         return $('.user-box__email');
     }
 
-    public get inputPassword () {
+    private get inputPassword () {
         return $('.user-box__password');
     }
 
-    public get inputConfirmPassword () {
+    private get inputConfirmPassword () {
         return $('.user-box__confirm-password');
     }
 
-    public get btnSubmit () {
+    private get btnSubmit () {
         return $('.auth-btn');
     }
 
-    public get userExistsError () {
+    private get userExistsError () {
         return $('.auth-content-inner__error');
     }
 
@@ -59,7 +59,8 @@ class RegistrationPage extends Page {
         await this.confirmPassword(confirmPassword);
     }
 
-    public async waitForError() {
+    public async registrationError() {
+        await this.userExistsError.waitForDisplayed()
         return this.userExistsError.getText();
     }
 

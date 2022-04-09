@@ -7,27 +7,27 @@ class OneProductPage extends Page {
     /**
      * define selectors using getter methods
      */
-    public get addInBasketButton () {
+    private get addInBasketButton () {
         return $('.info-card-btn__cart');
     }
 
-    public get addCommentArea () {
+    private get addCommentArea () {
         return $('.add-comment-text')
     }
 
-    public get goToBasketButton () {
+    private get goToBasketButton () {
         return $('.info-card-btn__add-cart');
     }
 
-    public get inputGreatProduct () {
+    private get inputGreatProduct () {
         return $('input[href="/product?id=911"]');
     }
 
-    public get addCommentButton () {
+    private get addCommentButton () {
         return $('.add-comment-btn');
     }
 
-    public get addCommentError () {
+    private get addCommentError () {
         return $('.new-comment-alert-label');
     }
 
@@ -36,11 +36,11 @@ class OneProductPage extends Page {
         return super.open('product?id=867');
     }
 
-    public async waitAddInBasketButton() {
+    private async waitAddInBasketButton() {
         return this.addInBasketButton.waitForDisplayed()
     }
 
-    public async waitGoToBasketButton() {
+    private async waitGoToBasketButton() {
         return this.goToBasketButton.waitForDisplayed()
     }
 
@@ -53,30 +53,34 @@ class OneProductPage extends Page {
     }
 
     public async clickOnAddInBasketButton() {
+        await this.waitAddInBasketButton()
         await this.addInBasketButton.click()
     }
 
     public async clickOnGoToBasketButton() {
+        await this.waitGoToBasketButton()
         await this.goToBasketButton.click()
     }
 
-    public async clickOnAddCommentButton() {
-        await this.addCommentButton.click()
-    }
-
-    public async waitAddCommentButton() {
+    private async waitAddCommentButton() {
         await this.addCommentButton.waitForDisplayed()
     }
 
-    public async waitAddCommentArea() {
+    public async clickOnAddCommentButton() {
+        await this.waitAddCommentButton()
+        await this.addCommentButton.click()
+    }
+
+    private async waitAddCommentArea() {
         await this.addCommentArea.waitForDisplayed()
     }
 
     public async addComment() {
+        await this.waitAddCommentArea()
         await this.addCommentArea.setValue('Nice')
     }
 
-    public async waitAddCommentError() {
+    public async getAddCommentError() {
         await this.addCommentError.waitForDisplayed()
         return this.addCommentError.getText()
     }

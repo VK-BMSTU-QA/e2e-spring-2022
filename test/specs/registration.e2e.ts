@@ -8,8 +8,8 @@ describe('Регистрации с логином уже существующе
 
     it('Появляется уведомление об ошибке "Пользователь уже существует"', async () => {
         await RegistrationPage.open();
-        await RegistrationPage.registrate(process.env.AZOTLOGIN, '12345@mail.ru', process.env.AZOTPASSWORD, process.env.AZOTPASSWORD);
-        const received = await RegistrationPage.waitForError();
+        await RegistrationPage.registrate(process.env.AZOTLOGIN, process.env.AZOTEMAIL, process.env.AZOTPASSWORD, process.env.AZOTPASSWORD);
+        const received = await RegistrationPage.registrationError();
         const expected = 'Пользователь уже существует';
 
         assert.strictEqual(
