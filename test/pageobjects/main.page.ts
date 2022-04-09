@@ -34,6 +34,10 @@ class MainPage extends Page {
         return $('.top-album');
     }
 
+    public get albumArt() {
+        return $('.album');
+    }
+
     public async playFirstAlbum() {
         await this.firstAlbumPlayButton.waitForDisplayed();
         await this.firstAlbumPlayButton.click();
@@ -42,6 +46,7 @@ class MainPage extends Page {
     public async openFirstAlbum() {
         await this.firstAlbum.waitForDisplayed();
         await this.firstAlbum.click();
+        await this.albumArt.waitForDisplayed();
     }
 
 

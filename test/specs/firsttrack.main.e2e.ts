@@ -4,18 +4,18 @@ import {screenHeight, screenWidth} from '../../constants';
 import MainPage from '../pageobjects/main.page';
 
 describe('Play first track from "Suggested tracks" section', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
         LoginPage.setWindowSize(screenWidth, screenHeight);
         MainPage.setWindowSize(screenWidth, screenHeight);
-    });
 
-    it('Plays first track', async () => {
         LoginPage.open();
 
         await LoginPage.login(process.env.LOGIN, process.env.PASSWORD);
 
         MainPage.open();
+    });
 
+    it('Plays first track', async () => {
         const trackTitle = await MainPage.getFirstTrackTitle();
         const artistName = await MainPage.getFirstTrackArtist();
 

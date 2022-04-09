@@ -7,7 +7,7 @@ class ProfilePage extends Page {
     }
 
     public email() {
-        return $('#content > div > div.profile-page__content > form.profile-form > div:nth-child(2) > input');
+        return $('input[name=email]');
     }
 
     public async getEmail() {
