@@ -16,7 +16,7 @@ describe('Board. Add tag', () => {
         await BoardPage.openTagsModal();
         await BoardPage.addTag(tagName);
 
-        const testTagName = await BoardPage.modalTagName.getText();
+        const testTagName = await BoardPage.getFirstTagText();
 
         assert.strictEqual(
           tagName,

@@ -15,12 +15,12 @@ describe('Board. Rename board', () => {
 
         await BoardPage.open();
 
-        oldBoardName = await BoardPage.lblBoardName.getText();
+        oldBoardName = await BoardPage.getBoardName();
 
         await BoardPage.openBoardSettingsModal();
         await BoardPage.fillModalSettings(newBoardName);
 
-        const testBoardName = await BoardPage.lblBoardName.getText();
+        const testBoardName = await BoardPage.getBoardName();
 
         assert.strictEqual(
           newBoardName,

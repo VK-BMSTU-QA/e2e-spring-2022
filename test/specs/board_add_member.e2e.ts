@@ -22,19 +22,15 @@ describe('Board. Members', () => {
           `Аккаунт с username ${foundUsername} не найден (ожидалось: ${newMemberLogin})`,
         );
 
-        await BoardPage.modalAddMemberSearchResultUsername.click();
+        await BoardPage.modalAddMemberFirstSearchResultUsername.click();
 
-        await browser.execute(() => {
-            document.location.reload();
-        });
-
-        await BoardPage.testUserDpesht.isDisplayed();
+        await BoardPage.testUsername(newMemberLogin).isDisplayed();
     });
 
     afterEach(async () => {
         // TODO - дергать апишку
         await BoardPage.openInviteMemberModal();
-        await BoardPage.modalAddMemberSearchResultUsername.click();
+        await BoardPage.modalAddMemberFirstSearchResultUsername.click();
     });
 });
 

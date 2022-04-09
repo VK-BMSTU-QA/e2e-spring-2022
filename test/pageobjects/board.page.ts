@@ -1,11 +1,13 @@
+import {refresh} from 'utils/browser';
+import { ChainablePromiseElement } from '../../node_modules/webdriverio/build/types';
 import Page from './page';
 
 /**
- * sub page containing specific selectors and methods for a specific page
+ * Страница доски
  */
 class BoardPage extends Page {
     /**
-     * define selectors using getter methods
+     * Селекторы
      */
     public get lblBoardName () {
         return $('.board-header__name');
@@ -55,11 +57,11 @@ class BoardPage extends Page {
         return $('[id="boardSettingPopUpSaveBtnId"]');
     }
 
-    public get divColumn () {
+    public get divFirstColumn () {
         return $('.column');
     }
 
-    public get divColumnHeaderTitle () {
+    public get divColumnFirstHeaderTitle () {
         return $('.column__title');
     }
 
@@ -100,21 +102,45 @@ class BoardPage extends Page {
     }
 
     // очень страшно, помогите
-    public get modalAddMemberSearchResultUsername () {
+    public get modalAddMemberFirstSearchResultUsername () {
         return $('.user-name');
     }
 
-    // Прибито молотком - не успеваю
-    public get testUserDpesht () {
-        return $('[title="DPesht"]');
+    /**
+     * Участник с юзернеймом на доске
+     * @param {string} username 
+     * @returns {ChainablePromiseElement<any>}
+     */
+    public testUsername (username: string): ChainablePromiseElement<any> {
+        return $(`.board-header__members [title="${username}"]`);
     }
 
+    /**
+     * Получаем название доски
+     * @returns Promise<string>
+     */
+    public async getBoardName(): Promise<string> {
+        await this.lblBoardName.waitForDisplayed();
+        return await this.lblBoardName.getText()
+    }
+
+    /////////////////////////////////////////////////////////////////
+    // Модальное окно создания колонки
+    /////////////////////////////////////////////////////////////////
+
+    /**
+     * Открываем модальное окно создания колонки
+     */
     public async openCreateCardListModal () {
         await this.btnCreateCardList.waitForDisplayed();
         await this.btnCreateCardList.click();
         await this.modalCreateCardList.waitForDisplayed();
     }
 
+    /**
+     * Заполняем модальное окно создания колонки
+     * @param {string} title заголовок колонки
+     */
     public async fillmodalCreateCardList (title: string) {
         await this.modalCreateCardListTitle.waitForDisplayed();
         await this.modalCreateCardListTitle.setValue(title);
@@ -122,10 +148,27 @@ class BoardPage extends Page {
         await this.modalCreateCardListCreate.click();
     }
 
-    public async getColumnTitle () {
-        await this.divColumnHeaderTitle.waitForDisplayed();
-        return await this.divColumnHeaderTitle.getText();
+    /**
+     * Получаем заголовок первой колонки
+     * @returns Promise<string>
+     */
+    public async getFirstColumnTitle (): Promise<string> {
+        await this.divColumnFirstHeaderTitle.waitForDisplayed();
+        return await this.divColumnFirstHeaderTitle.getText();
     }
+
+    /**
+     * Получаем data-id первой колонки
+     * @returns Promise<string>
+     */
+    public async getFirstColumnDataId () : Promise<string> {
+        await this.divFirstColumn.waitForDisplayed();
+        return await this.divFirstColumn.getAttribute('data-id');
+    }
+
+    /////////////////////////////////////////////////////////////////
+    // Модальное окно настроек доски
+    /////////////////////////////////////////////////////////////////
 
     public async openBoardSettingsModal () {
         await this.btnBoardSettings.waitForDisplayed();
@@ -133,12 +176,16 @@ class BoardPage extends Page {
         await this.modalSettings.waitForDisplayed();
     }
 
-    public async fillModalSettings (name?: string, description?: string) {
+    public async fillModalSettings (name?: string) {
         await this.modalSettingsTitle.waitForDisplayed();
         await this.modalSettingsTitle.setValue(name);
         await this.modalSettingsCreate.waitForDisplayed();
         await this.modalSettingsCreate.click();
     }
+
+    /////////////////////////////////////////////////////////////////
+    // Модальное окно тегов
+    /////////////////////////////////////////////////////////////////
 
     public async openTagsModal () {
         await this.btnBoardTags.waitForDisplayed();
@@ -157,6 +204,15 @@ class BoardPage extends Page {
         await this.modalTagEditButton.click();
     }
 
+    public async getFirstTagText (): Promise<string> {
+        await this.modalTagName.waitForDisplayed();
+        return await this.modalTagName.getText();
+    }
+
+    /////////////////////////////////////////////////////////////////
+    // Модальное окно добавления пользователей в доску
+    /////////////////////////////////////////////////////////////////
+
     public async openInviteMemberModal () {
         await this.btnAddMember.waitForDisplayed();
         await this.btnAddMember.click();
@@ -166,9 +222,18 @@ class BoardPage extends Page {
     public async searchInviteMemberModal (username: string) {
         await this.modalAddMemberInput.waitForDisplayed();
         await this.modalAddMemberInput.setValue(username);
-        return await this.modalAddMemberSearchResultUsername.getText();
+        await this.modalAddMemberFirstSearchResultUsername.waitForDisplayed();
+        return await this.modalAddMemberFirstSearchResultUsername.getText();
     }
 
+    /////////////////////////////////////////////////////////////////
+    // Service
+    /////////////////////////////////////////////////////////////////
+
+    /**
+     * Удаляем колонку по айди
+     * @param {number | string} id айди колонки
+     */
     public async deleteCardListById (id: number | string) {
         const cardList = $(`[data-id="${id}"] .deleteCardList`);
         await cardList.waitForDisplayed();
@@ -178,9 +243,21 @@ class BoardPage extends Page {
         await this.modalDeleteCardListButton.click();
     }
 
-    public open () {
+    /**
+     * Открыть страницу
+     * @returns Promise<string>
+     */
+    public open (): Promise<string> {
         // TODO - normal id
         return super.open('board/38');
+    }
+
+    /**
+     * Обновить страницу
+     */
+    public refresh () {
+        // вообще можно было browser.refresh, но он у меня не работал :с
+        refresh();
     }
 }
 

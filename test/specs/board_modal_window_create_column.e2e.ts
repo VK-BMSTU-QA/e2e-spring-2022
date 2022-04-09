@@ -18,9 +18,9 @@ describe('Board. Create column.', () => {
         await BoardPage.openCreateCardListModal();
         await BoardPage.fillmodalCreateCardList(columnName);
 
-        const columnTitle = await BoardPage.getColumnTitle();
+        const columnTitle = await BoardPage.getFirstColumnTitle();
 
-        data_id = await BoardPage.divColumn.getAttribute('data-id');
+        data_id = await BoardPage.getFirstColumnDataId();
 
         assert.strictEqual(
           columnTitle,
