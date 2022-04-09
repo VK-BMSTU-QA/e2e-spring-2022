@@ -10,6 +10,7 @@ class FavoritesPage extends Page {
     }
 
     public async getTrack(trackId: number) {
+        await this.getTrackImg(trackId).waitForDisplayed();
         return this.getTrackImg(trackId);
     }
 

@@ -9,17 +9,17 @@ describe('Login with correct username and password', () => {
         LoginPage.setWindowSize(1400, 1200);
         AlbumPage.setWindowSize(1400, 1200);
         FavoritesPage.setWindowSize(1400, 1200);
-        await LoginPage.open();
+        LoginPage.open();
         await LoginPage.login(process.env.LOGIN, process.env.PASSWORD);
     });
 
     it('should add favor track to favorites page', async () => {
         const trackId = 4271;
 
-        await AlbumPage.open();
+        AlbumPage.open();
         await AlbumPage.favorTrack(trackId);
 
-        await FavoritesPage.open();
+        FavoritesPage.open();
         const track = await FavoritesPage.getTrack(trackId);
 
         assert.notEqual(

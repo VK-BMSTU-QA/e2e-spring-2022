@@ -7,7 +7,7 @@ describe('Login with correct username and password', () => {
     });
 
     it('should login with valid credentials', async () => {
-        await LoginPage.open();
+        LoginPage.open();
         await LoginPage.login(process.env.LOGIN, process.env.PASSWORD);
 
         await LoginPage.openProfileAfterLogin();
