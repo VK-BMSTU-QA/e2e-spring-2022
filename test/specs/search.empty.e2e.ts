@@ -1,9 +1,10 @@
 import SearchPage from '../pageobjects/search.page';
 import * as assert from 'assert';
+import {screenHeight, screenWidth} from '../../constants';
 
 describe('Search for non-existing artist', () => {
     beforeEach(() => {
-        SearchPage.setWindowSize(1400, 1200);
+        SearchPage.setWindowSize(screenWidth, screenHeight);
     });
 
     it('should return "No results" for random query', async () => {
