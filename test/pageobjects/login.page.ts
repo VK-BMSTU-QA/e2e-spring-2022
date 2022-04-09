@@ -7,46 +7,25 @@ class LoginPage extends Page {
     /**
      * define selectors using getter methods
      */
-    public get inputUsername () {
-        return $('input[name="username"]');
+    public get inputEmail () {
+        return $('#emailInput');
     }
 
     public get inputPassword () {
-        return $('input[name="password"]');
+        return $('#passwordInput');
     }
 
     public get btnSubmit () {
-        return $('[data-test-id="submit-button"]');
+        return $('.button-blue');
     }
 
-    public get btnNext () {
-        return $('[data-test-id="next-button"]');
-    }
-
-    public get userEmailHeader () {
-        return $('.ph-project__user-name');
-    }
-
-    public async fillLogin (username: string) {
-        await this.inputUsername.waitForDisplayed();
-        await this.inputUsername.setValue(username);
-        await this.btnNext.click();
-    }
-
-    public async fillPassword (password: string) {
+    public async login (email: string, password: string) {
+        await this.inputEmail.waitForDisplayed();
+        await this.inputEmail.setValue(email);
         await this.inputPassword.waitForDisplayed();
         await this.inputPassword.setValue(password);
         await this.btnSubmit.click();
-    }
-
-    public async login (username: string, password: string) {
-        await this.fillLogin(username);
-        await this.fillPassword(password);
-    }
-
-    public async getEmail () {
-        await this.userEmailHeader.waitForDisplayed();
-        return this.userEmailHeader.getText();
+        await browser.pause(1000);
     }
 
     public open () {
@@ -54,4 +33,4 @@ class LoginPage extends Page {
     }
 }
 
-export default new LoginPage('https://account.mail.ru');
+export default new LoginPage('https://bmstusa.ru');

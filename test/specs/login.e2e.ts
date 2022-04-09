@@ -1,16 +1,22 @@
 import LoginPage from  '../pageobjects/login.page';
+import MainPage from '../pageobjects/main.page'
 import * as assert from 'assert';
 
 describe('Login with correct username and password', () => {
     beforeEach(() => {
         LoginPage.setWindowSize(1400, 1200);
+        MainPage.setWindowSize(1400, 1200);
     });
 
     it('should login with valid credentials', async () => {
+        await MainPage.open();
+        await MainPage.openLogin();
         await LoginPage.open();
 
         await LoginPage.login(process.env.LOGIN, process.env.PASSWORD);
-        const headerEmail = await LoginPage.getEmail();
+        await MainPage.open();
+
+        const headerEmail = await MainPage.getEmail();
 
         assert.strictEqual(
           headerEmail,
@@ -19,5 +25,3 @@ describe('Login with correct username and password', () => {
         );
     });
 });
-
-
