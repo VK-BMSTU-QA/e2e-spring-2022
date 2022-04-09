@@ -18,7 +18,7 @@ class profilePage extends Page {
     }
 
     private get archiveBtn() {
-        return $('.profile-content-right__ads-type=Архив');
+        return $('.profile-content-right__ads-type:nth-of-type(2)');
     }
 
     public async getNewAdvertText() {

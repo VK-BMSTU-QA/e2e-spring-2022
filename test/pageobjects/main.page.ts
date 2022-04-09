@@ -34,6 +34,7 @@ class MainPage extends Page {
     }
 
     private async openModal() {
+        await this.modalButton.waitForDisplayed();
         await this.modalButton.click();
     }
 
