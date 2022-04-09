@@ -7,8 +7,8 @@ describe('Fail login', () => {
     });
 
     it('should fail because password is invalid', async () => {
-        let expError = "Неправильный логин и/или пароль";
-        let password = "123";
+        const expError = 'Неправильный логин и/или пароль';
+        const password = '123';
 
         await LoginPage.open();
         

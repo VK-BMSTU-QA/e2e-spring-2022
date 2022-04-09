@@ -7,7 +7,7 @@ describe('Login with correct username and password', () => {
     });
 
     it('should login with valid credentials', async () => {
-        const wantLogin = process.env.LOGIN.split("@")[0];
+        const wantLogin = process.env.LOGIN.split('@')[0];
        
         await LoginPage.open();
         await LoginPage.login(process.env.LOGIN, process.env.PASSWORD);

@@ -34,6 +34,7 @@ class LoginPage extends Page {
     private get btnNavBarLogout () {
         return $('.navbar__popup > a[router-go="/logout"]');
     }
+    
     private get pageName () {
         return $('.auth-block > h1[key="null"]');
     }
@@ -53,6 +54,7 @@ class LoginPage extends Page {
         await this.fillLogin(username);
         await this.fillPassword(password);
     }
+
     public async logout () {
         await this.btnOpenNavBar.click();
         await this.btnNavBarLogout.click();
@@ -62,6 +64,7 @@ class LoginPage extends Page {
         await this.userEmailHeader.waitForDisplayed();
         return this.userEmailHeader.getText();
     }
+
     public async getPageName () {
         await this.pageName.waitForDisplayed();
         return this.pageName.getText();

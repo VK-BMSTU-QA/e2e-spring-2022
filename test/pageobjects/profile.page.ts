@@ -18,6 +18,7 @@ class ProfilePage extends Page {
     private get btnNavBarLogout () {
         return $('.navbar__popup > a[router-go="/logout"]');
     }
+    
     public async logout () {
         await this.btnOpenNavBar.click();
         await this.btnNavBarLogout.click();

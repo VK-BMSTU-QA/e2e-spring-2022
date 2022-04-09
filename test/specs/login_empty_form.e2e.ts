@@ -1,4 +1,4 @@
-import LoginPage from  '../pageobjects/login.page';
+import LoginPage from '../pageobjects/login.page';
 import * as assert from 'assert';
 
 describe('Fail login', () => {
@@ -7,10 +7,10 @@ describe('Fail login', () => {
     });
 
     it('should fail because form is empty', async () => {
-        let expError = "Введите логин и пароль";
+        const expError = 'Введите логин и пароль';
         await LoginPage.open();
         
-        await LoginPage.login ("", "");
+        await LoginPage.login ('', '');
         const receivedErr = await LoginPage.getError();
 
         assert.strictEqual(

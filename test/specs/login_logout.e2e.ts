@@ -9,7 +9,6 @@ describe('Login and logout from account', () => {
     });
 
     it('after logout should open login page instead of a profile', async () => {
-        let expectPageName = "Вход";
         await LoginPage.open();
 
         await LoginPage.login(process.env.LOGIN, process.env.PASSWORD);
@@ -17,13 +16,14 @@ describe('Login and logout from account', () => {
 
         assert.strictEqual(
           headerEmail,
-          process.env.LOGIN.split("@")[0],
+          process.env.LOGIN.split('@')[0],
           `Email авторизованного юзера ${headerEmail} не соответствует ожидаемому ${process.env.LOGIN}`,
         );
 
+        const expectPageName = 'Вход';
         await ProfilePage.logout();
 
-        let pageName = await LoginPage.getPageName();
+        const pageName = await LoginPage.getPageName();
         assert.strictEqual(
             pageName,
             expectPageName,
