@@ -1,22 +1,22 @@
 import LoginPage from  '../pageobjects/login.page';
 import * as assert from 'assert';
 
-describe('Login with correct username and password', () => {
+describe('Авторизация с логином несуществующего пользователя', () => {
     beforeEach(() => {
         LoginPage.setWindowSize(1400, 1200);
     });
 
-    it('should login with valid credentials', async () => {
+    it('Появляется уведомление об ошибке "Пользователя не существует"', async () => {
         await LoginPage.open();
-
-        await LoginPage.login(process.env.LOGIN, process.env.PASSWORD);
-        const headerEmail = await LoginPage.getEmail();
+        await LoginPage.login(process.env.WRONGAZOTLOGIN, process.env.AZOTPASSWORD);
+        const received = await LoginPage.loginError();
+        const expected = 'Пользователя не существует';
 
         assert.strictEqual(
-          headerEmail,
-          process.env.LOGIN,
-          `Email авторизованного юзера ${headerEmail} не соответствует ожидаемому ${process.env.LOGIN}`,
-        );
+            received,
+            expected,
+          );
+
     });
 });
 
