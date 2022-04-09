@@ -21,3 +21,5 @@ export default class Page {
         browser.setWindowSize(width, height);
     }
 }
+
+

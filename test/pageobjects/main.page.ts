@@ -58,3 +58,5 @@ import Page from './page';
 
  export default new MainPage('https://bmstusa.ru');
  
+
+ 

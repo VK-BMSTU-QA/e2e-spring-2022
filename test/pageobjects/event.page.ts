@@ -14,3 +14,6 @@ class EventPage extends Page {
 }
 
 export default new EventPage('https://bmstusa.ru');
+
+
+

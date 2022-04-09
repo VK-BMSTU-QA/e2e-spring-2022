@@ -44,3 +44,5 @@ class LoginPage extends Page {
 }
 
 export default new LoginPage('https://bmstusa.ru');
+
+
