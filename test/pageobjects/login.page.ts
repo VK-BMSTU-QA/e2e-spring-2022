@@ -15,7 +15,7 @@ class LoginPage extends Page {
         return $('#password');
     }
 
-    public get btnEnter () {
+    public get btnLogin () {
         return $('#login-button');
     }
 
@@ -36,7 +36,7 @@ class LoginPage extends Page {
     public async login (login: string, password: string) {
         await this.fillLogin(login);
         await this.fillPassword(password);
-        await this.btnEnter.click();
+        await this.btnLogin.click();
     }
 
     public async getLogin () {
