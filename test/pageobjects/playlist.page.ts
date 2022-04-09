@@ -7,27 +7,27 @@ import {URL} from '../../constants';
 class PlaylistPage extends Page {
 
     public get playlistAvatar () {
-        return $('#content > div.playlist > div.playlist__description > div.playlist__description-avatar');
+        return $('.playlist__description-avatar');
     }
 
     public get nameInput () {
-        return $('#content > div.editwindow > div > div > form.editwindow__form > input');
+        return $('.editwindow__form-input');
     }
 
     public get saveBtn() {
-        return $('#content > div.editwindow > div > div > form.editwindow__form > div.editwindow__form-buttons > input');
+        return $('.editwindow__form-submit');
     }
 
     public get msgLabel() {
-        return $('#content > div.editwindow > div > div > form.editwindow__form > div.editwindow__form-msg.form__fail_msg.success.visible');
+        return $('.editwindow__form-msg');
     }
 
     public get closeMenuBtn() {
-        return $('#content > div.editwindow > div > img');
+        return $('.editwindow__close');
     }
 
     public get playlistNameLabel() {
-        return $('#content > div.playlist > div.playlist__description > div.playlist__description-text_block > div.playlist__description-title');
+        return $('.playlist__description-title');
     }
 
     public async openEditMenu() {
@@ -38,15 +38,18 @@ class PlaylistPage extends Page {
     public async updatePlaylistName(newName: string) {
         await this.nameInput.waitForDisplayed();
         await this.nameInput.setValue(newName);
+        await this.saveBtn.waitForClickable();
         await this.saveBtn.click();
         await this.msgLabel.waitForDisplayed();
     }
 
     public async closeEditMenu() {
+        await this.closeMenuBtn.waitForClickable();
         await this.closeMenuBtn.click();
     }
 
     public async getPlaylistName() {
+        await this.playlistNameLabel.waitForDisplayed();
         return this.playlistNameLabel.getText();
     }
 

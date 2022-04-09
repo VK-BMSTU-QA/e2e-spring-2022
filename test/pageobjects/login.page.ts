@@ -9,15 +9,15 @@ class LoginPage extends Page {
      * define selectors using getter methods
      */
     public get inputEmail () {
-        return $('#auth-form > input:nth-child(1)');
+        return $('input[name=email]');
     }
 
     public get inputPassword () {
-        return $('#auth-form > input:nth-child(2)');
+        return $('input[name=password]');
     }
 
     public get btnSubmit () {
-        return $('#auth-form > div.auth-form__buttons > input');
+        return $('.auth-form__submit');
     }
 
     public async fillLogin (email: string) {
