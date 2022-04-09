@@ -15,7 +15,7 @@ describe('Create team with correct name', () => {
     });
 
     it('should create team with valid name', async () => {
-        const expectedTeamName = 'someTeam'
+        const expectedTeamName = 'someTeam';
 
         await TeamsPage.createTeam(expectedTeamName);
         const isCreated = await TeamsPage.isTeamCreated();

@@ -16,7 +16,7 @@ describe('Create board with correct name', () => {
     });
 
     it('should create board with valid name', async () => {
-        const expectedBoardName = 'someBoard'
+        const expectedBoardName = 'someBoard';
 
         await TeamsPage.createBoard(expectedBoardName);
         const boardName = await TeamsPage.getBoardName();
