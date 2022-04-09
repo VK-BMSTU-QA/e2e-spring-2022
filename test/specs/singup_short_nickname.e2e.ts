@@ -1,6 +1,8 @@
 import SignupPage from  '../pageobjects/signup.page';
 import * as assert from 'assert';
-import generate_string from '../utilits';
+import generateString, {CorrectLenString, EmailString} from '../utilits';
+
+const IncorrectUsernameLen = 2;
 
 describe('Signup with short username', () => {
     beforeEach(() => {
@@ -8,9 +10,9 @@ describe('Signup with short username', () => {
     });
 
     it('should signup with valid credentials', async () => {
-        const username = generate_string(2);
-        const email = generate_string(10) + '@mail.ru';
-        const password = generate_string(10);
+        const username = generateString(IncorrectUsernameLen);
+        const email = generateString(CorrectLenString) + EmailString;
+        const password = generateString(CorrectLenString);
 
         await SignupPage.open();
 

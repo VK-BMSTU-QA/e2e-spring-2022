@@ -7,64 +7,64 @@ class SignupPage extends Page {
     /**
      * define selectors using getter methods
      */
-    public get inputUsername () {
+    private get inputUsername () {
         return $('.auth-block > form > div:nth-child(1) > label > input');
     }
 
-    public get authBlock () {
+    private get authBlock () {
         return $('.auth-block');
     }
 
-    public get inputEmail () {
+    private get inputEmail () {
         return $('.auth-block > form > div:nth-child(2) > label > input');
     }
 
-    public get inputPassword () {
+    private get inputPassword () {
         return $('.auth-block > form > div:nth-child(3) > label > input');
     }
 
-    public get inputRepeatPassword () {
+    private get inputRepeatPassword () {
         return $('.auth-block > form > div:nth-child(4) > label > input');
     }
 
-    public get errorUsername () {
+    private get errorUsername () {
         return $('.auth-block > form > div:nth-child(1) > div > .validation_error');
     }
 
-    public get errorEmail () {
+    private get errorEmail () {
         return $('.auth-block > form > div:nth-child(2) > div > .validation_error');
     }
 
-    public get errorPassword () {
+    private get errorPassword () {
         return $('.auth-block > form > div:nth-child(3) > div > .validation_error');
     }
 
-    public get errorRepeatPassword () {
+    private get errorRepeatPassword () {
         return $('.auth-block > form > div:nth-child(4) > div > .validation_error');
     }
 
-    public get exitButton () {
+    private get exitButton () {
         return $('.navbar__popup > a[router-go="/logout"]');
     }
 
-    public get profileMenu () {
+    private get profileMenu () {
         return $('.navbar__profile');
     }
 
-    public get exitApplyButton () {
+    private get exitApplyButton () {
         return $('button[class="btn btn_primary "]');
     }
 
 
-    public get mainError () {
+    private get mainError () {
         return $('.auth-block > form > .error');
     }
 
-    public get btnSubmit () {
+    private get btnSubmit () {
         return $('.auth-block > form > button');
     }
 
-    public get usernameHeader () {
+    private get usernameHeader () {
         return $('.profile-card__username');
     }
 

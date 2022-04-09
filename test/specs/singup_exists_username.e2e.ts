@@ -1,5 +1,5 @@
 import SignupPage from  '../pageobjects/signup.page';
-import generate_string from '../utilits';
+import generateString, {CorrectLenString, EmailString} from '../utilits';
 import * as assert from 'assert';
 
 describe('Signup with exists username', () => {
@@ -8,9 +8,9 @@ describe('Signup with exists username', () => {
     });
 
     it('should display error about repeated username', async () => {
-        const username = generate_string(10);
-        const email = generate_string(10) + '@mail.ru';
-        const password = generate_string(10);
+        const username = generateString(CorrectLenString);
+        const email = generateString(CorrectLenString) + EmailString;
+        const password = generateString(CorrectLenString);
 
         await SignupPage.open();
 
