@@ -7,7 +7,7 @@ describe('Signup with exists username', () => {
         SignupPage.setWindowSize(1400, 1200);
     });
 
-    it('should display error about repeated username', async () => {
+    it('should display error message about repeated username', async () => {
         const username = generateString(CorrectLenString);
         const email = generateString(CorrectLenString) + EmailString;
         const password = generateString(CorrectLenString);
@@ -20,17 +20,17 @@ describe('Signup with exists username', () => {
         assert.strictEqual(
             headerUsername,
             username,
-            `Username зарегестрированного юзера ${headerUsername} не соответствует ожидаемому ${username}`,
+            `Username of signup user ${headerUsername} is not equal to username on page ${username}`,
         );
 
         await SignupPage.logout();
 
-        assert.strictEqual(await SignupPage.checkAuthBlock(), true,  'Not logout user');
+        assert.strictEqual(await SignupPage.checkAuthBlock(), true,  'Couldn\'t logout');
 
         await SignupPage.open();
 
         await SignupPage.signup(username, email, password);
-        assert.strictEqual(await SignupPage.checkMainError(), true, 'No message about repeat username');
+        assert.strictEqual(await SignupPage.checkMainError(), true, 'No error message about repeat username');
     });
 });
 

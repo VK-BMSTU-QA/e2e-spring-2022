@@ -6,13 +6,13 @@ describe('Signup with empty email', () => {
         SignupPage.setWindowSize(1400, 1200);
     });
 
-    it('should display error about empty email', async () => {
+    it('should display error message about empty email', async () => {
         await SignupPage.open();
 
         await SignupPage.fillEmail('1');
         await SignupPage.fillEmail('');
 
-        assert.strictEqual(await SignupPage.checkErrorEmail(), true);
+        assert.strictEqual(await SignupPage.checkErrorEmail(), true, 'No error message about about empty email\'s field');
     });
 });
 

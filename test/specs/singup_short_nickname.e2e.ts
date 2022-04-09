@@ -2,22 +2,22 @@ import SignupPage from  '../pageobjects/signup.page';
 import * as assert from 'assert';
 import generateString, {CorrectLenString, EmailString} from '../utilits';
 
-const IncorrectUsernameLen = 2;
+const ShortUsernameLen = 2;
 
 describe('Signup with short username', () => {
     beforeEach(() => {
         SignupPage.setWindowSize(1400, 1200);
     });
 
-    it('should signup with valid credentials', async () => {
-        const username = generateString(IncorrectUsernameLen);
+    it('should display error message about short username', async () => {
+        const username = generateString(ShortUsernameLen);
         const email = generateString(CorrectLenString) + EmailString;
         const password = generateString(CorrectLenString);
 
         await SignupPage.open();
 
         await SignupPage.signup(username, email, password);
-        assert.strictEqual(await SignupPage.checkMainError(), true, 'No message about incorrect username');
+        assert.strictEqual(await SignupPage.checkMainError(), true, 'No error message about short username');
     });
 });
 

@@ -8,7 +8,7 @@ describe('Signup with correct username, email and password', () => {
         SignupPage.setWindowSize(1400, 1200);
     });
 
-    it('should signup with valid credentials', async () => {
+    it('should signup with correct credentials', async () => {
         const username = generateString(CorrectLenString);
         const email = generateString(CorrectLenString) + EmailString;
         const password = generateString(CorrectLenString);
@@ -21,7 +21,7 @@ describe('Signup with correct username, email and password', () => {
         assert.strictEqual(
             headerUsername,
             username,
-            `Username зарегестрированного юзера ${headerUsername} не соответствует ожидаемому ${username}`,
+            `Username of signup user ${headerUsername} is not equal to username on page ${username}`,
         );
     });
 });
