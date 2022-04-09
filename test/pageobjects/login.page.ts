@@ -34,6 +34,8 @@ class LoginPage extends Page {
     public async login (username: string, password: string) {
         await this.fillLogin(username);
         await this.fillPassword(password);
+        //Костыль bmstusa
+        await browser.pause(1000);
     }
 
     public open () {

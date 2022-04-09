@@ -32,7 +32,7 @@ import Page from './page';
         await this.userHeaderAvatar.isClickable();
         await this.userHeaderAvatar.click()
         await this.userEmailHeader.waitForDisplayed();
-        return this.userEmailHeader.getText();
+        return await this.userEmailHeader.getText();
     }
 
     public async toProfile () {
@@ -57,3 +57,4 @@ import Page from './page';
  }
 
  export default new MainPage('https://bmstusa.ru');
+ 

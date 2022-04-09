@@ -11,8 +11,6 @@ describe('Login with correct username and password', () => {
         await LoginPage.open();
 
         await LoginPage.login(process.env.LOGIN, process.env.PASSWORD);
-        //Костыль
-        await browser.pause(1000);
         await MainPage.open();
 
         const headerEmail = await MainPage.getEmail();

@@ -22,9 +22,6 @@ import Page from './page';
     public get userName () {
         return $('[class="primary-text primary-text_name"]');
     }
-    
-
-    class="user-popup-userblock"
 
     public async changeUserName (username: string) {
        await this.editProfileButton.isClickable();
@@ -38,3 +35,4 @@ import Page from './page';
  }
 
  export default new ProfilePage('https://bmstusa.ru');
+ 
