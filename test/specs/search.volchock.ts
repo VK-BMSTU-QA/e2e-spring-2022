@@ -15,7 +15,7 @@ describe('Поиск объявления по тексту', () => {
         assert.strictEqual(
             gotSearchText,
             expectedSearchText,
-            `Происходит поиск по тексту "${gotSearchText}", введеному в текстовый инпут "${expectedSearchText}"`,
+            `Результат поиска ${gotSearchText} отличается от содержимого поиского инпута ${expectedSearchText}`,
         );
     });
 });

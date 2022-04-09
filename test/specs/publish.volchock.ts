@@ -8,7 +8,6 @@ describe('Создание нового объявления', () => {
         MainPage.setWindowSize(1400, 1200);
         await MainPage.open();
         await MainPage.login(process.env.LOGIN, process.env.PASSWORD);
-        await MainPage.getUsername();
     });
 
     it('Создание нового объявления с названием тест', async () => {
@@ -21,7 +20,7 @@ describe('Создание нового объявления', () => {
         assert.strictEqual(
             title,
             newAdvertText,
-            `Создание нового объявления с названием ${title} и остальными дефолтными параметрами`,
+            `Последнее объявление ${newAdvertText} отличается от созданного в ходе теста ${title}`,
         );
     });
 });
