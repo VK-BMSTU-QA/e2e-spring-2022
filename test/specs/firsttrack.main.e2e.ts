@@ -6,7 +6,6 @@ import MainPage from '../pageobjects/main.page';
 describe('Play first track from "Suggested tracks" section', () => {
     beforeEach(async () => {
         LoginPage.setWindowSize(screenWidth, screenHeight);
-        MainPage.setWindowSize(screenWidth, screenHeight);
 
         LoginPage.open();
 
@@ -16,13 +15,13 @@ describe('Play first track from "Suggested tracks" section', () => {
     });
 
     it('Plays first track', async () => {
-        const trackTitle = await MainPage.getFirstTrackTitle();
-        const artistName = await MainPage.getFirstTrackArtist();
+        const trackTitle = await MainPage.tracks.getFirstTrackTitle();
+        const artistName = await MainPage.tracks.getFirstTrackArtist();
 
         await MainPage.playFirstTrack();
 
-        const playerTitle = await MainPage.getPlayerTrackTitle();
-        const playerArtist = await MainPage.getPlayerArtistName();
+        const playerTitle = await MainPage.player.getPlayerTrackTitle();
+        const playerArtist = await MainPage.player.getPlayerArtistName();
 
         assert.strictEqual(trackTitle, playerTitle,
             `Воспроизводимый трек ${playerTitle} не соответствует первому треку ${trackTitle}`);

@@ -6,7 +6,6 @@ import * as assert from 'assert';
 describe('Play first track from "Albums" section', () => {
     beforeEach(() => {
         LoginPage.setWindowSize(screenWidth, screenHeight);
-        MainPage.setWindowSize(screenWidth, screenHeight);
     });
 
     it('Plays first track from the first album', async () => {
@@ -16,15 +15,15 @@ describe('Play first track from "Albums" section', () => {
 
         MainPage.open();
 
-        await MainPage.playFirstAlbum();
+        await MainPage.albums.playFirstAlbum();
 
-        const playerArtist = await MainPage.getPlayerArtistName();
-        const playerTitle = await MainPage.getPlayerTrackTitle();
+        const playerArtist = await MainPage.player.getPlayerArtistName();
+        const playerTitle = await MainPage.player.getPlayerTrackTitle();
 
-        await MainPage.openFirstAlbum();
+        await MainPage.albums.openFirstAlbum();
 
-        const artistName = await MainPage.getFirstTrackArtist();
-        const trackTitle = await MainPage.getFirstTrackTitle();
+        const artistName = await MainPage.tracks.getFirstTrackArtist();
+        const trackTitle = await MainPage.tracks.getFirstTrackTitle();
 
         assert.strictEqual(trackTitle, playerTitle,
             `Воспроизводимый трек ${playerTitle} не соответствует первому треку ${trackTitle}`);
@@ -32,5 +31,3 @@ describe('Play first track from "Albums" section', () => {
             `Исполнитель ${playerArtist} не соответствует исполнителю первого трека ${artistName}`);
     });
 });
-
-
