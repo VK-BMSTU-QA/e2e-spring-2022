@@ -53,8 +53,8 @@ class PlaylistPage extends Page {
         return this.playlistNameLabel.getText();
     }
 
-    public open () {
-        return super.open('playlist/198');
+    public open (path: string) {
+        return super.open(`playlist/${path}`);
     }
 }
 

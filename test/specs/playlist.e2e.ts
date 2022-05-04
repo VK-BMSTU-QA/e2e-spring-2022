@@ -12,11 +12,12 @@ describe('Playlist functionality', () => {
 
     it('Should change playlist name with valid name', async () => {
         const newName = 'TEStt playlist';
+        const playlistId = 198;
 
         LoginPage.open();
         await LoginPage.login(process.env.LOGIN, process.env.PASSWORD);
 
-        PlaylistPage.open();
+        PlaylistPage.open(playlistId.toString());
         await PlaylistPage.openEditMenu();
         await PlaylistPage.updatePlaylistName(newName);
         await PlaylistPage.closeEditMenu();

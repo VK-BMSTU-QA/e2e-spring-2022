@@ -14,11 +14,12 @@ describe('Favorites functionality', () => {
 
     it('Should add favor track to favorites page', async () => {
         const trackId = 4271;
+        const albumId = 456;
 
         LoginPage.open();
         await LoginPage.login(process.env.LOGIN, process.env.PASSWORD);
 
-        AlbumPage.open();
+        AlbumPage.open(albumId.toString());
         await AlbumPage.favorTrack(trackId);
 
         FavoritesPage.open();

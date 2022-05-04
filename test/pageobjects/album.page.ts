@@ -15,8 +15,8 @@ class AlbumPage extends Page {
         await this.getTrackFavorBtn(trackId).click();
     }
 
-    public open () {
-        return super.open('album/456');
+    public open (path: string) {
+        return super.open(`album/${path}`);
     }
 }
 
