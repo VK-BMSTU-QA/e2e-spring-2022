@@ -15,8 +15,8 @@ describe('Board. Create column.', () => {
 
         await BoardPage.open();
 
-        await BoardPage.openCreateCardListModal();
-        await BoardPage.fillmodalCreateCardList(columnName);
+        await BoardPage.CardListModal.openCreateCardListModal();
+        await BoardPage.CardListModal.fillmodalCreateCardList(columnName);
 
         const columnTitle = await BoardPage.getFirstColumnTitle();
 

@@ -13,8 +13,8 @@ describe('Board. Members', () => {
 
         await BoardPage.open();
 
-        await BoardPage.openInviteMemberModal();
-        const foundUsername = await BoardPage.searchInviteMemberModal(newMemberLogin);
+        await BoardPage.MemberModal.openInviteMemberModal();
+        const foundUsername = await BoardPage.MemberModal.searchInviteMemberModal(newMemberLogin);
 
         assert.strictEqual(
           newMemberLogin,
@@ -22,15 +22,15 @@ describe('Board. Members', () => {
           `Аккаунт с username ${foundUsername} не найден (ожидалось: ${newMemberLogin})`,
         );
 
-        await BoardPage.modalAddMemberFirstSearchResultUsername.click();
+        await BoardPage.MemberModal.modalAddMemberFirstSearchResultUsername.click();
 
         await BoardPage.testUsername(newMemberLogin).isDisplayed();
     });
 
     afterEach(async () => {
         // TODO - дергать апишку
-        await BoardPage.openInviteMemberModal();
-        await BoardPage.modalAddMemberFirstSearchResultUsername.click();
+        await BoardPage.MemberModal.openInviteMemberModal();
+        await BoardPage.MemberModal.modalAddMemberFirstSearchResultUsername.click();
     });
 });
 

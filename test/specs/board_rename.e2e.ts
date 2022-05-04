@@ -17,8 +17,8 @@ describe('Board. Rename board', () => {
 
         oldBoardName = await BoardPage.getBoardName();
 
-        await BoardPage.openBoardSettingsModal();
-        await BoardPage.fillModalSettings(newBoardName);
+        await BoardPage.SettingsModal.openBoardSettingsModal();
+        await BoardPage.SettingsModal.fillModalSettings(newBoardName);
 
         const testBoardName = await BoardPage.getBoardName();
 
@@ -31,8 +31,8 @@ describe('Board. Rename board', () => {
 
     afterEach(async () => {
         // TODO - дергать апишку
-        await BoardPage.openBoardSettingsModal();
-        await BoardPage.fillModalSettings(oldBoardName);
+        await BoardPage.SettingsModal.openBoardSettingsModal();
+        await BoardPage.SettingsModal.fillModalSettings(oldBoardName);
     });
 });
 

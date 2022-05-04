@@ -1,11 +1,25 @@
 import {refresh} from 'utils/browser';
-import { ChainablePromiseElement } from '../../node_modules/webdriverio/build/types';
+import {ChainablePromiseElement} from '../../node_modules/webdriverio/build/types';
 import Page from './page';
+import CardListModal from './cardlist.modal';
+import TagModal from './tag.modal';
+import MemberModal from './member.modal';
+import SettingsModal from './settings.modal';
 
 /**
  * Страница доски
  */
 class BoardPage extends Page {
+
+    /**
+     * Элементы
+     */
+
+    public CardListModal = CardListModal
+    public TagModal = TagModal
+    public MemberModal = MemberModal
+    public SettingsModal = SettingsModal
+
     /**
      * Селекторы
      */
@@ -13,48 +27,8 @@ class BoardPage extends Page {
         return $('.board-header__name');
     }
 
-    public get btnAddMember () {
-        return $('[id="showAddBoardMemberPopUpId"]');
-    }
-
-    public get btnCreateCardList () {
-        return $('[id="showCreateCardListPopUpId"]');
-    }
-
-    public get btnBoardSettings () {
-        return $('[id="showBoardSettingPopUpId"]');
-    }
-
-    public get btnBoardTags () {
-        return $('[id="showTagsBoardPopUpId"]');
-    }
-
-    public get modalCreateCardList () {
-        return $('.popup-content_card-list');
-    }
-
-    public get modalTagList () {
-        return $('.popup-content_tag-list');
-    }
-
     public get modalDeleteCardList () {
         return $('.popup-content_delete');
-    }
-
-    public get modalContentInvite () {
-        return $('.popup-content_invite');
-    }
-
-    public get modalSettings () {
-        return $('.popup-content_settings');
-    }
-
-    public get modalSettingsTitle () {
-        return $('[id="boardSettingPopUpTitleId"]');
-    }
-
-    public get modalSettingsCreate () {
-        return $('[id="boardSettingPopUpSaveBtnId"]');
     }
 
     public get divFirstColumn () {
@@ -67,43 +41,6 @@ class BoardPage extends Page {
 
     public get modalDeleteCardListButton () {
         return $('[id="deleteCLPopUpConfirmBtnId"]');
-    }
-
-    public get modalCreateCardListTitle () {
-        return $('[id="cardListPopUpTitleId"]');
-    }
-
-    public get modalCreateCardListCreate () {
-        return $('[id="cardListPopUpCreateBtnId"]');
-    }
-
-    public get modalTagAddTagButton () {
-        return $('[id="showTagPopUpBtnId"]');
-    }
-
-    public get modalTagEdit () {
-        return $('.popup-content_tag');
-    }
-
-    public get modalTagEditInput () {
-        return $('[id="tagNameInputId"]');
-    }
-
-    public get modalTagEditButton () {
-        return $('[id="tagPopUpCreateBtnId"]');
-    }
-
-    public get modalTagName () {
-        return $('.tags-list__tag-name');
-    }
-
-    public get modalAddMemberInput () {
-        return $('[id="addUserPopUpSearchInputId"]');
-    }
-
-    // очень страшно, помогите
-    public get modalAddMemberFirstSearchResultUsername () {
-        return $('.user-name');
     }
 
     /**
@@ -124,30 +61,6 @@ class BoardPage extends Page {
         return await this.lblBoardName.getText()
     }
 
-    /////////////////////////////////////////////////////////////////
-    // Модальное окно создания колонки
-    /////////////////////////////////////////////////////////////////
-
-    /**
-     * Открываем модальное окно создания колонки
-     */
-    public async openCreateCardListModal () {
-        await this.btnCreateCardList.waitForDisplayed();
-        await this.btnCreateCardList.click();
-        await this.modalCreateCardList.waitForDisplayed();
-    }
-
-    /**
-     * Заполняем модальное окно создания колонки
-     * @param {string} title заголовок колонки
-     */
-    public async fillmodalCreateCardList (title: string) {
-        await this.modalCreateCardListTitle.waitForDisplayed();
-        await this.modalCreateCardListTitle.setValue(title);
-        await this.modalCreateCardListCreate.waitForDisplayed();
-        await this.modalCreateCardListCreate.click();
-    }
-
     /**
      * Получаем заголовок первой колонки
      * @returns Promise<string>
@@ -164,66 +77,6 @@ class BoardPage extends Page {
     public async getFirstColumnDataId () : Promise<string> {
         await this.divFirstColumn.waitForDisplayed();
         return await this.divFirstColumn.getAttribute('data-id');
-    }
-
-    /////////////////////////////////////////////////////////////////
-    // Модальное окно настроек доски
-    /////////////////////////////////////////////////////////////////
-
-    public async openBoardSettingsModal () {
-        await this.btnBoardSettings.waitForDisplayed();
-        await this.btnBoardSettings.click();
-        await this.modalSettings.waitForDisplayed();
-    }
-
-    public async fillModalSettings (name?: string) {
-        await this.modalSettingsTitle.waitForDisplayed();
-        await this.modalSettingsTitle.setValue(name);
-        await this.modalSettingsCreate.waitForDisplayed();
-        await this.modalSettingsCreate.click();
-    }
-
-    /////////////////////////////////////////////////////////////////
-    // Модальное окно тегов
-    /////////////////////////////////////////////////////////////////
-
-    public async openTagsModal () {
-        await this.btnBoardTags.waitForDisplayed();
-        await this.btnBoardTags.click();
-        await this.modalTagList.waitForDisplayed();
-    }
-
-    public async addTag (name: string) {
-        await this.modalTagAddTagButton.waitForDisplayed();
-        await this.modalTagAddTagButton.click();
-
-        await this.modalTagEdit.waitForDisplayed();
-        await this.modalTagEditInput.waitForDisplayed();
-        await this.modalTagEditInput.setValue(name);
-        await this.modalTagEditButton.waitForDisplayed();
-        await this.modalTagEditButton.click();
-    }
-
-    public async getFirstTagText (): Promise<string> {
-        await this.modalTagName.waitForDisplayed();
-        return await this.modalTagName.getText();
-    }
-
-    /////////////////////////////////////////////////////////////////
-    // Модальное окно добавления пользователей в доску
-    /////////////////////////////////////////////////////////////////
-
-    public async openInviteMemberModal () {
-        await this.btnAddMember.waitForDisplayed();
-        await this.btnAddMember.click();
-        await this.modalContentInvite.waitForDisplayed();
-    }
-
-    public async searchInviteMemberModal (username: string) {
-        await this.modalAddMemberInput.waitForDisplayed();
-        await this.modalAddMemberInput.setValue(username);
-        await this.modalAddMemberFirstSearchResultUsername.waitForDisplayed();
-        return await this.modalAddMemberFirstSearchResultUsername.getText();
     }
 
     /////////////////////////////////////////////////////////////////
