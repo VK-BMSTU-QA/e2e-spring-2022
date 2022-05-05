@@ -14,12 +14,8 @@ describe('Fail login', () => {
         
         await LoginPage.login(process.env.LOGIN, password);
         const receivedErr = await LoginPage.getError();
-
-        assert.strictEqual(
-          expError,
-          receivedErr,
-          `Полученная ошибка ${receivedErr} не соответствует ожидаемой ${expError}`,
-        );
+        
+        assert.notEqual(receivedErr, "", `Ожидалось появление ошибки`)
     });
 });
 
