@@ -7,30 +7,41 @@ class LoginPage extends Page {
     /**
      * define selectors using getter methods
      */
-    public get inputUsername () {
-        return $('input[name="username"]');
+    private get inputUsername () {
+        return $('input[type="email"]');
     }
 
-    public get inputPassword () {
-        return $('input[name="password"]');
+    private get inputPassword () {
+        return $('input[type="password"]');
     }
 
-    public get btnSubmit () {
-        return $('[data-test-id="submit-button"]');
+    private get btnSubmit () {
+        return $('button[class="btn btn_primary btn_rounded"]');
     }
 
-    public get btnNext () {
-        return $('[data-test-id="next-button"]');
+    private get userEmailHeader () {
+        return $('.profile-card__username');
     }
 
-    public get userEmailHeader () {
-        return $('.ph-project__user-name');
+    private get invalidLoginOrPassword () {
+        return $('.error');
     }
 
+    private get btnOpenNavBar () {
+        return $('.navbar__profile-name');
+    }
+
+    private get btnNavBarLogout () {
+        return $('.navbar__popup > a[router-go="/logout"]');
+    }
+    
+    private get pageName () {
+        return $('.auth-block > h1[key="null"]');
+    }
+    
     public async fillLogin (username: string) {
         await this.inputUsername.waitForDisplayed();
         await this.inputUsername.setValue(username);
-        await this.btnNext.click();
     }
 
     public async fillPassword (password: string) {
@@ -44,14 +55,29 @@ class LoginPage extends Page {
         await this.fillPassword(password);
     }
 
+    public async logout () {
+        await this.btnOpenNavBar.click();
+        await this.btnNavBarLogout.click();
+    }
+
     public async getEmail () {
         await this.userEmailHeader.waitForDisplayed();
         return this.userEmailHeader.getText();
     }
 
+    public async getPageName () {
+        await this.pageName.waitForDisplayed();
+        return this.pageName.getText();
+    }
+
+    public async getError () {
+        await this.invalidLoginOrPassword.waitForDisplayed();
+        return this.invalidLoginOrPassword.getText();
+    }
+
     public open () {
-        return super.open('login');
+        return super.open('signin');
     }
 }
 
-export default new LoginPage('https://account.mail.ru');
+export default new LoginPage('https://pyaterochka-team.site');
