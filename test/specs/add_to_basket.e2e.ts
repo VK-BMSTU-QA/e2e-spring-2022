@@ -12,9 +12,11 @@ describe('Добавление товара в корзину', () => {
 
     it('Кнопка "Добавить в корзину" меняется на "Перейти в корзину", при переходе на страницу корзины товар в ней находится',
     async () => {
-        await MainPage.clickOnProductForBasket();
+        var productID = 879;
+
+        await MainPage.clickOnProductForBasket(productID);
         await OneProductPage.clickOnAddInBasketButton();
         await OneProductPage.clickOnGoToBasketButton();
-        await BasketPage.seeProductInBasket();
+        await BasketPage.waitForProductInBasket(productID);
     });
 });

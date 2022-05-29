@@ -60,7 +60,7 @@ class RegistrationPage extends Page {
     }
 
     public async registrationError() {
-        await this.userExistsError.waitForDisplayed()
+        await this.userExistsError.waitForDisplayed();
         return this.userExistsError.getText();
     }
 

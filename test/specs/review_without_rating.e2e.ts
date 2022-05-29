@@ -11,11 +11,13 @@ describe('Отправить отзыв без оценки', () => {
     });
 
     it('Появляется уведомление об ошибке "Нужно выбрать оценку товара и написать отзыв"', async () => {
-        await MainPage.clickOnProductForReview();
-        await OneProductPage.addComment();
+        var productID = 911;
+
+        await MainPage.clickOnProductForReview(productID);
+        await OneProductPage.addComment('Хороший товар');
         await OneProductPage.clickOnAddCommentButton();
         const received = await OneProductPage.getAddCommentError();
-        const expected = 'Нужно выбрать оценку товара и написать отзыв'
+        const expected = 'Нужно выбрать оценку товара и написать отзыв';
 
         assert.strictEqual(
             received,

@@ -8,24 +8,24 @@ class MainPage extends Page {
      * define selectors using getter methods
      */
 
-    private get productForBasket () {
-        return $('div[href="/product?id=879"]');
+    private productForBasket(productID: number) {
+        return $(`div[href="/product?id=${productID}"]`);
     }
 
-    private get productForReview () {
-        return $('div[href="/product?id=911"]');
+    private productForReview(productID: number) {
+        return $(`div[href="/product?id=${productID}"]`);
     }
 
     public open () {
         return super.open('');
     }
 
-    public async clickOnProductForBasket() {
-        await this.productForBasket.click()
+    public async clickOnProductForBasket(productID: number) {
+        await this.productForBasket(productID).click();
     }
 
-    public async clickOnProductForReview() {
-        await this.productForReview.click()
+    public async clickOnProductForReview(productID: number) {
+        await this.productForReview(productID).click();
     }
 }
 
